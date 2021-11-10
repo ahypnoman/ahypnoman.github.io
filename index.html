@@ -3,10 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <title>AHypnoman</title>
-</head>
+    <style>
+
+        body {
+            font-family: Helvetica, sans-serif;
+            padding: 0;
+        }
+
+        .blueBackground {
+            background: aliceblue;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 5px;
+        }
+
+        h2 {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            margin-top: 0;
+            padding: 5px;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: #808080;
+        }
+
+        button.on:hover::before {
+            content: "> ";
+        }
+
+        button.on:hover{
+            cursor: pointer;
+        }
+
+        button.off::before {
+            content: '!';
+            display: inline-block;
+            width: 0.8em;
+            height: 1em;
+            margin-right: 3px;
+            padding: 1px;
+            background-color: blanchedalmond;
+            font-size: smaller;
+        }
+
+        button.off:active::before {
+            content: "You're refreshing too quickly!";
+            width: auto;
+
+        }
+
+        button.on:active {
+            background: aliceblue;
+        }
+
+        .small{
+            font-size: 10px;
+        }
+
+        a{
+            color: darkblue;
+        }
+
+        a.text:hover{
+            background-color: #e2f0ff;
+            border-radius: 3px;
+        }
+
+        input[type=checkbox i]{
+            display: inline;
+            visibility: hidden;
+            width: 0;
+            margin: 0;
+        }
+
+        .settings:hover::before{
+            content: '> ';
+        }
+        .settings.checked{
+            background-color: #e2f0ff;
+            border-radius: 3px;
+        }
+        .settings::after{
+            content: "";
+            display: inline-block;
+            background-color: #e2f0ff;
+            border: 1px solid #add4ff;
+            border-radius: 50%;
+            width: 0.75em;
+            height: 0.7em;
+            margin-bottom: -1.3px;
+
+        }
+        .settings.checked::after{
+            content: "";
+            display: inline-block;
+            background-color: #add4ff;
+            border: 1px solid #add4ff;
+            border-radius: 50%;
+            width: 0.75em;
+            height: 0.7em;
+            margin-bottom: -1.3px;
+            margin-right: 5px;
+
+        }
+
+        .joke.on{
+            background-color: bisque;
+        }
+
+        .wip::before{
+            content: '!';
+            display: inline-block;
+            height: 1vh;
+            margin-right: 0;
+            padding: 1px;
+            background-color: blanchedalmond;
+        }
+        .wip{
+            display: inline-block;
+            height: 2vh;
+            margin-right: 3px;
+            padding: 1px;
+            background-color: blanchedalmond;
+        }
+    </style>
 <body>
-<h1>Hi welcome to my junk deposit</h1>
-<p>Something about Github pages.</p>
-<a href="https://scratch.mit.edu/users/AHypnoman/">My Scratch account</a>
+<div class="blueBackground">
+    <h1>AHypnoman</h1>
+    <p>Hi welcome to my junk deposit</p>
+</div>
+
+<div class="blueBackground">
+    <a href="https://scratch.mit.edu/users/AHypnoman/"><img alt="My Scratch account" height="50px"
+                                                            src="scratch.png"></a>
+    <a href="https://github.com/ahypnoman"><img alt="My Github account" height="50px" src="GitHub-Mark-120px-plus.png"></a>
+</div>
+<button class="on" id="statsButton" onclick="displayStatistics()">Refresh statistics</button>
+<div class="blueBackground">
+    <h2>Statistics</h2>
+    <span class="small">Thanks to <a class="text" href="https://scratch.mit.edu/users/DatOneLefty/">@Datonelefty</a> for ScratchDB</span>
+    <div style="display:block; height: 0.5em;"></div>
+    I currently have <span class="followCount">???</span> followers.
+    <br> I have <span class="viewCount">???</span> views.
+    <br> I have <span class="loveCount">???</span> loves.
+</div>
+<div class="blueBackground">
+    <h2>Contact me</h2>
+    Contact me on Scratch <a href="https://scratch.mit.edu/users/AHypnoman/#comments">here</a>.
+</div>
+<div class="blueBackground">
+    <h2>About Me</h2>
+    I'm a user of Scratch who has a passion for programming.
+    I typically make small projects on Scratch, and have a few larger ones in the works.
+    I know how to code in Scratch, JavaScript, HTML, and CSS, although I would only regard myself as "fluent" in HTML and Scratch.
+    <span class="joke">I normally reside in Antarctica and I'm human</span><sup class="joke">[Citation needed]</sup>.
+</div>
+<div class="blueBackground">
+    <span class="wip">This section is Work In Progress.</span>
+    <h2>Projects</h2>
+    Check out my <a href="https://scratch.mit.edu/users/AHypnoman/">Scratch Account</a> for my projects.
+    Some of my more notable projects include
+
+</div>
+<div class="blueBackground">
+    <h2>Settings</h2>
+    <label onclick="toggleShowJokes()" class="settings" Id="showJokesLabel" for="showJokes"><input id="showJokes" type="checkbox">
+        Highlight jokes
+    </label>
+</div>
+
+<script>
+    let refreshTimer = 0
+
+    function toggleShowJokes(){
+        if (document.getElementById("showJokes").checked){
+            document.getElementById("showJokesLabel").classList.add("checked")
+            localStorage.setItem('highlightJokes', "on")
+            let jokes = document.getElementsByClassName("joke")
+            for(let i = 0; i < jokes.length; i++){
+                jokes[i].classList.add("on")
+            }
+        }else{
+            document.getElementById("showJokesLabel").classList.remove("checked")
+            localStorage.removeItem("highlightJokes")
+            let jokes = document.getElementsByClassName("joke")
+            for(let i = 0; i < jokes.length; i++){
+                jokes[i].classList.remove("on")
+            }
+        }
+    }
+
+    function resetStatsButton() {
+        let refreshButton = document.getElementById("statsButton")
+        refreshButton.classList.replace("off", "on")
+        refreshTimer = 0
+    }
+
+    async function getUserInfo(user) {
+        let url = `https://scratchdb.lefty.one/v3/user/info/${user}`;
+        try {
+            let response = await fetch(url);
+            return response.json();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function displayStatistics() {
+        if (refreshTimer === 0) {
+            refreshTimer = 1
+            let userData = await getUserInfo("AHypnoman")
+            //––––––––
+
+            let followCount = userData.statistics.followers
+            let followCountDisplay = document.getElementsByClassName("followCount")
+            for (let i = 0; i < followCountDisplay.length; i++) {
+                followCountDisplay[i].innerHTML = followCount
+            }
+            let viewCount = userData.statistics.views
+            let viewCountDisplay = document.getElementsByClassName("viewCount")
+            for (let i = 0; i < viewCountDisplay.length; i++) {
+                viewCountDisplay[i].innerHTML = viewCount
+            }
+            let loveCount = userData.statistics.loves
+            let loveCountDisplay = document.getElementsByClassName("loveCount")
+            for (let i = 0; i < loveCountDisplay.length; i++) {
+                loveCountDisplay[i].innerHTML = loveCount
+            }
+        
+            //––––––––
+            let refreshButton = document.getElementById("statsButton")
+            refreshButton.classList.replace("on", "off")
+            setTimeout("resetStatsButton()", 5000)
+        }
+    }
+
+    function doOnLoad(){
+        displayStatistics()
+        if (localStorage.getItem("highlightJokes")) {
+            document.getElementById("showJokesLabel").classList.add("checked")
+            let jokes = document.getElementsByClassName("joke")
+            for(let i = 0; i < jokes.length; i++){
+                jokes[i].classList.add("on")
+            }
+        }
+    }
+
+    window.addEventListener("load", doOnLoad())
+
+
+
+
+
+</script>
+
+
+
 </body>
 </html>
