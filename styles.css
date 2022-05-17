@@ -1,0 +1,152 @@
+/*General*/
+body {
+    font-family: Helvetica, sans-serif;
+    padding: 0;
+}
+
+.blueBackground {
+    background: aliceblue;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    margin: 0;
+    padding: 5px;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin-top: 0;
+    padding: 5px;
+}
+
+button {
+    background: none;
+    border: none;
+    color: #808080;
+}
+
+button.on:hover::before {
+    content: "> ";
+}
+
+button.on:hover {
+    cursor: pointer;
+}
+
+button.off::before {
+    content: '!';
+    display: inline-block;
+    width: 0.8em;
+    height: 1em;
+    margin-right: 3px;
+    padding: 1px;
+    background-color: blanchedalmond;
+    font-size: smaller;
+}
+
+button.off:active::before {
+    content: "You're refreshing too quickly!";
+    width: auto;
+
+}
+
+button.on:active {
+    background: aliceblue;
+}
+
+.small {
+    font-size: 10px;
+}
+
+a {
+    color: darkblue;
+}
+
+a.text:hover {
+    background-color: #e2f0ff;
+    border-radius: 3px;
+}
+
+input[type=checkbox i] {
+    display: inline;
+    visibility: hidden;
+    width: 0;
+    margin: 0;
+}
+
+.settings:hover::before {
+    content: '> ';
+}
+
+.settings.checked {
+    background-color: #e2f0ff;
+    border-radius: 3px;
+}
+
+.settings::after {
+    content: "";
+    display: inline-block;
+    background-color: #e2f0ff;
+    border: 1px solid #add4ff;
+    border-radius: 50%;
+    width: 0.75em;
+    height: 0.7em;
+    margin-bottom: -1.3px;
+
+}
+
+.settings.checked::after {
+    content: "";
+    display: inline-block;
+    background-color: #add4ff;
+    border: 1px solid #add4ff;
+    border-radius: 50%;
+    width: 0.75em;
+    height: 0.7em;
+    margin-bottom: -1.3px;
+    margin-right: 5px;
+
+}
+
+.joke.on {
+    background-color: bisque;
+}
+
+.wip::before {
+    content: '!';
+    display: inline-block;
+    height: 1vh;
+    margin-right: 0;
+    padding: 1px;
+    background-color: blanchedalmond;
+}
+
+.wip {
+    display: inline-block;
+    height: 2vh;
+    margin-right: 3px;
+    padding: 1px;
+    background-color: blanchedalmond;
+}
+/*Web toys script output*/
+.scriptOutput {
+    font-family: "Andale Mono", serif;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-height: 20em;
+    overflow: scroll;
+}
+.scriptOutput.dark {
+    background: #000000;
+    color: #ffffff;
+}
+
+.scriptOptions:hover::before {
+    content: '> ';
+}
