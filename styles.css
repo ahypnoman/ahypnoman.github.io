@@ -134,13 +134,16 @@ input[type=checkbox i] {
     padding: 1px;
     background-color: blanchedalmond;
 }
-/*Web toys script output*/
+/*Web toys script stuff*/
 .scriptOutput {
-    font-family: "Andale Mono", serif;
+    font-family: "Andale Mono", monospace;
     padding: 10px;
     margin-bottom: 10px;
     max-height: 20em;
+    min-height: 1em;
     overflow: scroll;
+    width: min-content;
+    min-width: 40em;
 }
 .scriptOutput.dark {
     background: #000000;
@@ -149,4 +152,32 @@ input[type=checkbox i] {
 
 .scriptOptions:hover::before {
     content: '> ';
+
+}
+
+pre.code {
+    background: #e8e8e8;
+    padding: 10px;
+    margin-top: 0;
+    border-radius: 5px;
+    width: min-content;
+    min-width: 360px;
+}
+
+pre.code > code {
+    font-family: "Andale Mono", monospace;
+}
+
+.contentContainer {
+    width: min-content;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+.menuContainer {
+    display: flex;flex-direction: row;
 }
