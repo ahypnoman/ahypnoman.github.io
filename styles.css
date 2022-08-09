@@ -181,3 +181,9 @@ pre.code > code {
 .menuContainer {
     display: flex;flex-direction: row;
 }
+
+/*Web toys directory*/
+
+.webtoyDescImg {
+    object-fit: contain;
+}
