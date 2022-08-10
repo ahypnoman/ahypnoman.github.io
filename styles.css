@@ -2,20 +2,27 @@
 body {
     font-family: Helvetica, sans-serif;
     padding: 0;
+    margin: 8px 0 0 0;
 }
 
 .blueBackground {
     background: aliceblue;
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 0 8px 10px 8px;
 }
 
 h1 {
-    margin: 0;
+    margin: 0 0 0 8px;
     padding: 5px;
+
 }
 
 h2 {
+    margin: 0 0 0 8px;
+    padding: 0;
+}
+
+h3 {
     margin: 0;
     padding: 0;
 }
@@ -138,7 +145,7 @@ input[type=checkbox i] {
 .scriptOutput {
     font-family: "Andale Mono", monospace;
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 0 8px 10px 8px;
     max-height: 20em;
     min-height: 1em;
     overflow: scroll;
@@ -158,7 +165,7 @@ input[type=checkbox i] {
 pre.code {
     background: #e8e8e8;
     padding: 10px;
-    margin-top: 0;
+    margin: 0 8px 10px 8px;
     border-radius: 5px;
     width: min-content;
     min-width: 360px;
@@ -179,11 +186,69 @@ pre.code > code {
 }
 
 .menuContainer {
-    display: flex;flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 /*Web toys directory*/
 
-.webtoyDescImg {
-    object-fit: contain;
+.contentHolderOuter{
+    width: 100vw;
+    overflow-x: scroll;
+    margin: 0;
+    /* Moz only vvv */
+    scrollbar-width: none;
+    /* Moz only ^^^ */
+}
+
+.contentHolderOuter::-webkit-scrollbar{
+    display: none;
+}
+
+.contentHolderInner{
+    margin: 0;
+    width: max-content;
+    overflow-y: visible;
+    display: flex;
+}
+
+.webtoyDescContainer {
+    width: 300px;
+    display: block;
+    text-decoration: none;
+    color: black;
+    direction: ltr;
+    margin: 0 3px;
+    height: 195px;
+}
+
+.webtoyDescContainer .detailsHolder{
+    display:none;
+}
+
+.webtoyDescContainer:hover{
+    height:auto;
+}
+
+.webtoyDescContainer:hover .detailsHolder{
+   display:block;
+}
+
+.container {
+    position: relative;
+}
+
+.toysSection{
+    position: absolute;
+    z-index: 10;
+}
+
+.toolsSection{
+    position: absolute;
+    top:260px;
+}
+
+.gamesSection{
+    position: absolute;
+    top:520px;
 }
