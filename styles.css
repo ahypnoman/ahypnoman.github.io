@@ -32,21 +32,21 @@ p {
     padding: 5px;
 }
 
-button {
+button.simple {
     background: none;
     border: none;
     color: #808080;
 }
 
-button.on:hover::before {
+button.simple.on:hover::before {
     content: "> ";
 }
 
-button.on:hover {
+button.simple.on:hover {
     cursor: pointer;
 }
 
-button.off::before {
+button.simple.off::before {
     content: '!';
     display: inline-block;
     width: 0.8em;
@@ -57,13 +57,13 @@ button.off::before {
     font-size: smaller;
 }
 
-button.off:active::before {
+button.simple.off:active::before {
     content: "You're refreshing too quickly!";
     width: auto;
 
 }
 
-button.on:active {
+button.simple.on:active {
     background: aliceblue;
 }
 
@@ -190,6 +190,13 @@ pre.code > code {
     flex-direction: row;
 }
 
+/*Global buttons*/
+.globalButtons{
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    z-index: 99999;
+}
 /*Web toys directory*/
 
 .contentHolderOuter{
