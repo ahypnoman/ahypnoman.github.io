@@ -1,0 +1,101 @@
+body{
+    font-family: Serif, monospace;
+    color: #ffffff;
+    background: black;
+    margin: 0;
+}
+
+h1{
+    font-weight: lighter;
+    margin: 8px
+}
+h2{
+    margin: 0;
+    font-weight: lighter;
+    color: #0000c4;
+}
+h3{
+    margin: 0;
+    color: #8d0000;
+}
+button.copier{
+    cursor: copy;
+    background: none;
+    border: none;
+    font-family: Serif, monospace;
+    color: #ffffff;
+    padding: 0;
+    font-size: 16px;
+}
+
+button.copier:active{
+    color: #b0b0b0;
+
+}
+
+.hashRef{
+    color: #ff5900;
+}
+
+div.techContainer{
+    padding: 8px;
+    border: solid #ffffff 1px;
+    background: #0d0d0d;
+    width: 48%;
+    display: inline-block;
+    margin-bottom: 10px;
+
+}
+
+.inURLHash{
+    background: #210000;
+}
+
+div.techContainer.inURLHash{
+    background: #210000;
+}
+
+div.category{
+    padding: 16px 8px;
+    float: left;
+    width: 98%;
+}
+
+div.dataContainer{
+    width: 31%;
+    display: inline-grid;
+}
+
+hr{
+    margin: 0;
+}
+
+div.dataContainer > p{
+    margin-bottom: 0;
+}
+
+div.dataContainer.miscData > p{
+    margin: 4px 0 4px 0;
+}
+
+.jobs{
+    margin-bottom: 12px;
+}
+
+img{
+    object-fit: cover;
+    object-position: left top;
+    display: flow;
+}
+
+input{
+    border: none;
+    background: #232323;
+    width: min-content;
+    display: inline-block;
+}
+
+input:focus-visible{
+    outline: none;
+    background: #b0b0b0;
+}
