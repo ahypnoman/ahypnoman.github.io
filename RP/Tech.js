@@ -304,13 +304,11 @@ function renderTech() {
         items.forEach(item => {
             let element;
             if (itemIndex%2 === 0){
-                // document.getElementById(categories[categoryIndex]).insertAdjacentHTML("beforeend","<div class='rowHolder' style='width: 100%; clear: left; float: left'></div>")
             } else {
 
             }
             element = document.getElementById(categories[categoryIndex])
-            // element = document.getElementById(categories[categoryIndex]).getElementsByClassName("rowHolder")
-            // element = element[element.length-1]
+
             element.insertAdjacentHTML("beforeend", `
 <div class="techContainer" id="${item.id}" style="float: ${renderLRDeterminer(itemIndex)}; clear: ${renderLRDeterminer(itemIndex)}; ">
 <div style="display: flex"><div style="width: 50%; display: inline-block;"><h3 style="display: inline">${item.name}</h3><span style="float: right">amount: <input type="number" min="1" style="display: inline; width: 40px" id="${item.id}amount" value="1"></span><br>
