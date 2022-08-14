@@ -7,36 +7,84 @@
     <script src="Tech.js"></script>
 </head>
 <body>
-<h1>Tech</h1>
+<div class="content">
+<h1 style="display: inline-block">Tech</h1><span> - Sorry for the floating point errors IDK how to fix it</span>
 <hr>
 <div class="category" id="Military-Seaborne">
     <h2>Navy</h2>
-    <span class="hashRef">#Military-Seaborne</span> - <button class="copier" id="#Military-Seaborne" onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link (click)</button><br>
+    <span class="hashRef">#Military-Seaborne</span> -
+    <button class="copier" id="#Military-Seaborne"
+            onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link
+        (click)
+    </button>
+    <br><br>
 </div>
 <div class="category" id="Civilian-Seaborne">
-    <hr><br><br>
+    <hr>
+    <br><br>
     <h2>Civilian Waterborne Vessels</h2>
-    <span class="hashRef">#Civilian-Seaborne</span> - <button class="copier" id="#Civilian-Seaborne" onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link (click)</button><br>
-<br></div>
+    <span class="hashRef">#Civilian-Seaborne</span> -
+    <button class="copier" id="#Civilian-Seaborne"
+            onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link
+        (click)
+    </button>
+    <br>
+    <br></div>
 <div class="category" id="Airborne">
-    <hr><br><br>
+    <hr>
+    <br><br>
     <h2>Air Fleet</h2>
-    <span class="hashRef">#Airborne</span> - <button class="copier" id="#Airborne" onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link (click)</button><br>
+    <span class="hashRef">#Airborne</span> -
+    <button class="copier" id="#Airborne"
+            onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link
+        (click)
+    </button>
+    <br>
     <br></div>
 <div class="category" id="Land">
-    <hr><br><br>
+    <hr>
+    <br><br>
     <h2>Land Transport</h2>
-    <span class="hashRef">#Land</span> - <button class="copier" id="#Land" onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link (click)</button><br>
+    <span class="hashRef">#Land</span> -
+    <button class="copier" id="#Land"
+            onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link
+        (click)
+    </button>
+    <br>
     <br></div>
 <div class="category" id="Civilian-Equipment">
-    <hr><br><br>
+    <hr>
+    <br><br>
     <h2>Civilian Equipment</h2>
-    <span class="hashRef">#Civilian-Equipment</span> - <button class="copier" id="#Civilian-Equipment" onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link (click)</button><br>
+    <span class="hashRef">#Civilian-Equipment</span> -
+    <button class="copier" id="#Civilian-Equipment"
+            onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link
+        (click)
+    </button>
+    <br>
     <br></div>
 <div class="category" id="Military-Equipment">
-    <hr><br><br>
+    <hr>
+    <br><br>
     <h2>Military Equipment</h2>
-    <span class="hashRef">#Military-Equipment</span> - <button class="copier" id="#Military-Equipment" onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link (click)</button><br>
+    <span class="hashRef">#Military-Equipment</span> -
+    <button class="copier" id="#Military-Equipment"
+            onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link
+        (click)
+    </button>
+    <br>
     <br></div>
+</div>
+<div class="stickyWrapper">
+    <div style="float: left; padding: 0 0 2px 1px; background: #ffffff"><button class="tab" onclick="Array.from(document.getElementsByClassName('amountInput')).forEach((e)=>{e.value = 0; e.dispatchEvent(new Event('change'))}); totalCrew = {}; totalInit = {}; totalUpkeep = {}; totalCapacity = {}; totalRender()" style="text-align: center; display: block" id="clearAll">Clear all</button>
+    <div style="text-align: center; background: #343434; border: white solid; border-width: 2px 1px 0 1px">↓ Go to ↓</div>
+        <div id="techList" style="background: black; border: solid white; border-width: 2px 0 0 1px; padding: 2px; overflow: scroll; height: 126.5px"><div style="text-align: center"><b>Scroll</b></div></div></div>
+    <div class="totalCost">
+    <div style="text-align: center; border-left: 1px #ffffff solid">Total cost</div>
+    <div class="buttonContainer">
+        <button class="tab" onclick="tab = 'init'; totalRender()">Initial cost</button><button class="tab" onclick="tab = 'jobs'; totalRender()">Jobs etc</button><button class="tab" onclick="tab = 'upkeep'; totalRender()">Upkeep cost</button>
+        <div id="totalContainer" style="background: black; border: #ffffff solid; border-width: 2px 1px 1px 1px; padding: 2px">~~~</div>
+    </div>
+</div></div>
 </body>
 </html>

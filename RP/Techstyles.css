@@ -1,24 +1,32 @@
-body{
+body {
     font-family: Serif, monospace;
     color: #ffffff;
     background: black;
     margin: 0;
 }
 
-h1{
+
+div.content{
+
+}
+
+h1 {
     font-weight: lighter;
     margin: 8px
 }
-h2{
+
+h2 {
     margin: 0;
     font-weight: lighter;
     color: #0000c4;
 }
-h3{
+
+h3 {
     margin: 0;
     color: #8d0000;
 }
-button.copier{
+
+button.copier {
     cursor: copy;
     background: none;
     border: none;
@@ -28,16 +36,16 @@ button.copier{
     font-size: 16px;
 }
 
-button.copier:active{
+button.copier:active {
     color: #b0b0b0;
 
 }
 
-.hashRef{
+.hashRef {
     color: #ff5900;
 }
 
-div.techContainer{
+div.techContainer {
     padding: 8px;
     border: solid #ffffff 1px;
     background: #0d0d0d;
@@ -47,55 +55,107 @@ div.techContainer{
 
 }
 
-.inURLHash{
+.inURLHash {
     background: #210000;
 }
 
-div.techContainer.inURLHash{
+div.techContainer.inURLHash {
     background: #210000;
 }
 
-div.category{
+div.category {
     padding: 16px 8px;
     float: left;
     width: 98%;
 }
 
-div.dataContainer{
+div.dataContainer {
     width: 31%;
     display: inline-grid;
 }
 
-hr{
+hr {
     margin: 0;
 }
 
-div.dataContainer > p{
+div.dataContainer > p {
     margin-bottom: 0;
 }
 
-div.dataContainer.miscData > p{
+div.dataContainer.miscData > p {
     margin: 4px 0 4px 0;
 }
 
-.jobs{
+.jobs {
     margin-bottom: 12px;
 }
 
-img{
+img {
     object-fit: cover;
     object-position: left top;
     display: flow;
 }
 
-input{
+input {
     border: none;
     background: #232323;
     width: min-content;
     display: inline-block;
+    font-family: Serif, monospace;
+
 }
 
-input:focus-visible{
+input:focus-visible {
     outline: none;
     background: #b0b0b0;
+}
+
+div.stickyWrapper{
+    position: fixed;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    width: fit-content;
+}
+
+div.totalCost {
+    background: #343434;
+    border: #ffffff solid;
+    border-width: 0 0 1px 1px;
+    float: right;
+}
+
+button.tab {
+    background: #343434;
+    color: white;
+    border: none;
+    border-radius: 0;
+    margin: 0 1px 0 1px;
+    display: inline-block;
+    font-family: Serif, monospace;
+}
+
+button.tab:hover {
+    cursor: pointer;
+    outline: #626262 2px solid;
+}
+
+button.tab:active {
+    cursor: pointer;
+    background: #b0b0b0;
+    outline: #626262 2px solid;
+}
+
+div.buttonContainer {
+    background: #ffffff;
+    overflow: scroll;
+    height: 156px
+}
+
+#totalContainer{
+    height: 129.5px;
+}
+
+.totalCost{
+    height: 174px;
 }

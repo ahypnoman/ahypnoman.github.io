@@ -1,5 +1,14 @@
 window.addEventListener("load", runFuncs)
 
+let techTitles = {
+    "Military-Seaborne":"Navy",
+    "Civilian-Seaborne":"CWV",
+    "Airborne":"Air Fleet",
+    "Land":"Land",
+    "Civilian-Equipment":"Civ Equip",
+    "Military-Equipment":"Mil Equip"
+}
+
 let tech = {
     "Military-Seaborne": [
         {
@@ -14,8 +23,8 @@ let tech = {
                 "metal": 750,
                 "timber": 1500,
                 "canvas": 50,
-                "crew": [75,"people"]
-
+                "crew": [75, "people"],
+                "capacity": ["", "N/A"]
             },
             "upkeepStr": "300 tons of metal\n20 tons of fuel\n5 tons of canvas\n1,000,000 Nocks",
             "upkeepJSON": {
@@ -24,10 +33,10 @@ let tech = {
                 "fuel": 20,
                 "canvas": 5,
             },
-            "capacity":"0 tons",
-            "image":"images/ManOfWar.jpeg",
-            "alt":"Image of a Man Of War warship",
-            "efficiency":"N/A"
+            "capacity": "0 tons",
+            "image": "images/ManOfWar.jpeg",
+            "alt": "Image of a Man Of War warship",
+            "efficiency": "N/A"
         }
     ],
     "Civilian-Seaborne": [
@@ -43,8 +52,8 @@ let tech = {
                 "metal": 750,
                 "timber": 2000,
                 "canvas": 100,
-                "crew": [85,"people"]
-
+                "crew": [85, "people"],
+                "capacity": [1000, "tons"]
             },
             "upkeepStr": "100 tons of metal\n10 tons of fuel\n1 ton of canvas\n1,000,000 Nocks",
             "upkeepJSON": {
@@ -53,10 +62,10 @@ let tech = {
                 "fuel": 10,
                 "canvas": 1,
             },
-            "capacity":"1000 tons",
-            "image":"images/Sailboat.webp",
-            "alt":"Image of a sailing ship",
-            "efficiency":"N/A"
+            "capacity": "1000 tons",
+            "image": "images/Sailboat.webp",
+            "alt": "Image of a sailing ship",
+            "efficiency": "N/A"
         }
     ],
     "Airborne": [],
@@ -72,7 +81,8 @@ let tech = {
                 "pricetag": 20000,
                 "metal": 3.5,
                 "timber": 15,
-                "crew": [5,"horses"]
+                "crew": [5, "horses"],
+                "capacity": [20, "tons"]
             },
             "upkeepStr": "0.2 tons of metal\n2 tons of timber\n2,000 Nocks",
             "upkeepJSON": {
@@ -80,9 +90,9 @@ let tech = {
                 "metal": 0.2,
                 "timber": 2,
             },
-            "capacity":"20 tons",
-            "image":"images/Wagon.jpeg",
-            "alt":"Image of a wagon",
+            "capacity": "20 tons",
+            "image": "images/Wagon.jpeg",
+            "alt": "Image of a wagon",
             "efficiency": "N/A"
         }
     ],
@@ -98,8 +108,8 @@ let tech = {
                 "pricetag": 50000,
                 "metal": 1,
                 "timber": 2,
-                "crew": ["","N/A"]
-
+                "crew": ["", "N/A"],
+                "capacity": ["", "N/A"]
             },
             "upkeepStr": "0.2 tons of metal\n1 ton of timber\n5,000 Nocks",
             "upkeepJSON": {
@@ -107,10 +117,10 @@ let tech = {
                 "metal": 0.2,
                 "timber": 1,
             },
-            "capacity":"N/A",
-            "image":"images/Loom.jpeg",
-            "alt":"Image of a loom",
-            "efficiency":"N/A"
+            "capacity": "N/A",
+            "image": "images/Loom.jpeg",
+            "alt": "Image of a loom",
+            "efficiency": "N/A"
         },
         {
             "name": "Water Mill",
@@ -124,8 +134,8 @@ let tech = {
                 "metal": 750,
                 "timber": 80,
                 "building material": 60,
-                "crew": ["","N/A"]
-
+                "crew": ["", "N/A"],
+                "capacity": ["", "N/A"]
             },
             "upkeepStr": "1 ton of metal\n2 tons of timber\n5,000 Nocks",
             "upkeepJSON": {
@@ -133,10 +143,10 @@ let tech = {
                 "metal": 1,
                 "timber": 2
             },
-            "capacity":"N/A",
-            "image":"images/WaterMill.jpeg",
-            "alt":"Image of a Water Mill",
-            "efficiency":"N/A"
+            "capacity": "N/A",
+            "image": "images/WaterMill.jpeg",
+            "alt": "Image of a Water Mill",
+            "efficiency": "N/A"
         },
         {
             "name": "Forge",
@@ -150,8 +160,8 @@ let tech = {
                 "metal": 2,
                 "timber": 50,
                 "building material": 20,
-                "crew": ["","N/A"]
-
+                "crew": ["", "N/A"],
+                "capacity": ["", "N/A"]
             },
             "upkeepStr": "0.2 tons of metal\n2 tons of timber\n25,000 Nocks",
             "upkeepJSON": {
@@ -159,10 +169,10 @@ let tech = {
                 "metal": 0.2,
                 "timber": 2
             },
-            "capacity":"N/A",
-            "image":"images/Forge.jpeg",
-            "alt":"Image of a Forge",
-            "efficiency":"0.2"
+            "capacity": "N/A",
+            "image": "images/Forge.jpeg",
+            "alt": "Image of a Forge",
+            "efficiency": 0.2
         },
         {
             "name": "Plough (Plow)",
@@ -175,7 +185,8 @@ let tech = {
                 "pricetag": 10000,
                 "metal": 2,
                 "timber": 5,
-                "crew": [2,"horses"]
+                "crew": [2, "horses"],
+                "capacity": ["", "N/A"]
             },
             "upkeepStr": "1 ton of metal\n1 ton of timber\n5,000 Nocks",
             "upkeepJSON": {
@@ -183,10 +194,10 @@ let tech = {
                 "metal": 1,
                 "timber": 1
             },
-            "capacity":"N/A",
-            "image":"images/Plough.jpeg",
-            "alt":"Image of a Plough",
-            "efficiency":"0.5"
+            "capacity": "N/A",
+            "image": "images/Plough.jpeg",
+            "alt": "Image of a Plough",
+            "efficiency": 0.5
         }
     ],
     "Military-Equipment": [
@@ -201,17 +212,18 @@ let tech = {
                 "pricetag": 100,
                 "metal": 0.01,
                 "timber": 0.01,
-                "crew": [1,"person"]
+                "crew": [1, "people"],
+                "capacity": ["", "N/A"]
             },
             "upkeepStr": "0.01 ton of metal\n0.01 ton of fuel",
             "upkeepJSON": {
                 "metal": 0.01,
                 "fuel": 0.01
             },
-            "capacity":"N/A",
-            "image":"images/Musket.jpg",
-            "alt":"Image of a Musket",
-            "efficiency":"N/A"
+            "capacity": "N/A",
+            "image": "images/Musket.jpg",
+            "alt": "Image of a Musket",
+            "efficiency": "N/A"
         },
         {
             "name": "Pistol",
@@ -224,18 +236,18 @@ let tech = {
                 "pricetag": 50,
                 "metal": 0.005,
                 "timber": 0.005,
-                "crew": [1,"person"]
-
+                "crew": [1, "people"],
+                "capacity": ["", "N/A"]
             },
             "upkeepStr": "0.005 tons of metal\n0.005 tons of fuel",
             "upkeepJSON": {
                 "metal": 0.005,
                 "fuel": 0.005
             },
-            "capacity":"N/A",
-            "image":"images/Flintlock.jpeg",
-            "alt":"Image of an old pistol",
-            "efficiency":"N/A"
+            "capacity": "N/A",
+            "image": "images/Flintlock.jpeg",
+            "alt": "Image of an old pistol",
+            "efficiency": "N/A"
         },
         {
             "name": "Sabre (Saber)",
@@ -248,18 +260,18 @@ let tech = {
                 "pricetag": 50,
                 "metal": 0.015,
                 "timber": 0.005,
-                "crew": [1,"person"]
-
+                "crew": [1, "people"],
+                "capacity": ["", "N/A"]
             },
             "upkeepStr": "0.0005 tons of fuel\n5 Nocks",
             "upkeepJSON": {
                 "pricetag": 5,
                 "fuel": 0.0005
             },
-            "capacity":"N/A",
-            "image":"images/Sword.jpeg",
-            "alt":"Image of a sabre",
-            "efficiency":"N/A"
+            "capacity": "N/A",
+            "image": "images/Sword.jpeg",
+            "alt": "Image of a sabre",
+            "efficiency": "N/A"
         },
         {
             "name": "Cannon",
@@ -272,25 +284,33 @@ let tech = {
                 "pricetag": 10000,
                 "metal": 2,
                 "timber": 1,
-                "crew": ["","N/A"]
+                "crew": ["", "N/A"],
+                "capacity": ["", "N/A"]
             },
             "upkeepStr": "1 ton of metal\n1 ton of fuel\n1,000 Nocks",
             "upkeepJSON": {
                 "pricetag": 1000,
                 "metal": 1,
                 "fuel": 1,
-                "crew": ["","N/A"]
+                "crew": ["", "N/A"],
+                "capacity": ["", "N/A"]
             },
-            "capacity":"N/A",
-            "image":"images/Cannon.jpeg",
-            "alt":"Image of a cannon",
-            "efficiency":"N/A"
+            "capacity": "N/A",
+            "image": "images/Cannon.jpeg",
+            "alt": "Image of a cannon",
+            "efficiency": "N/A"
         }
     ]
 }
 
-function renderLRDeterminer(num){
-    if (num%2===0){
+let totalInit = {}
+let totalUpkeep = {}
+let totalCrew = {}
+let totalCapacity = {}
+let tab = "init"
+
+function renderLRDeterminer(num) {
+    if (num % 2 === 0) {
         return "left"
     } else return "right"
 }
@@ -303,15 +323,11 @@ function renderTech() {
         let itemIndex = 0;
         items.forEach(item => {
             let element;
-            if (itemIndex%2 === 0){
-            } else {
-
-            }
             element = document.getElementById(categories[categoryIndex])
 
             element.insertAdjacentHTML("beforeend", `
 <div class="techContainer" id="${item.id}" style="float: ${renderLRDeterminer(itemIndex)}; clear: ${renderLRDeterminer(itemIndex)}; ">
-<div style="display: flex"><div style="width: 50%; display: inline-block;"><h3 style="display: inline">${item.name}</h3><span style="float: right">amount: <input type="number" min="1" style="display: inline; width: 40px" id="${item.id}amount" value="1"></span><br>
+<div style="display: flex"><div style="width: 50%; display: inline-block;"><h3 style="display: inline">${item.name}</h3><span style="float: right">amount: <input type="number" min="0" style="display: inline; width: 40px" id="${item.id}amount" class="amountInput" previousVal="1" value="1"></span><br>
 <span class="hashRef">#${item.id}</span> - <button class="copier" id="#${item.id}" onclick="navigator.clipboard.writeText(window.location.host + window.location.pathname + this.id)">copy link (click)</button>
 <br><br><span class="civLevel">Civilisation Level: ${item.civLevel}</span>
 <p class="description">${item.description}</p></div>
@@ -323,47 +339,161 @@ function renderTech() {
 <div class="dataContainer" style="margin-right: 3%"><b>Upkeep</b><p id="${item.id}upkeep"></p></div>
 <div class="dataContainer miscData">
 <div><b>Misc</b></div><br>
-<div><b class="jobs">Positons</b><span style="float: right;">${item.costJSON.crew[0]} ${item.costJSON.crew[1]}</span></div>
-<div><b class="jobs">Capacity</b><span style="float: right;">${item.capacity}</span></div>
-<div><b class="jobs">Efficiency</b><span style="float: right;">${item.efficiency}</span></div>
+<div><b class="jobs">Positons</b><span id="${item.id}crew" style="float: right;"></span></div>
+<div><b class="jobs">capacity</b><span id="${item.id}capacity" style="float: right;"></span></div>
+<div><b class="jobs">Efficiency</b><span id="${item.id}efficiency" style="float: right;"></span></div>
 <div style="clear: both"></div>
 </div>
 </div>
 `)
-            document.getElementById(item.id + 'initCost').innerHTML = jsonCostsToString(item.costJSON, document.getElementById(item.id + 'amount').value)
-            document.getElementById(item.id + 'upkeep').innerHTML = jsonCostsToString(item.upkeepJSON, document.getElementById(item.id + 'amount').value)
+            document.getElementById(item.id + 'initCost').innerHTML = jsonCostsToString(item.costJSON, document.getElementById(item.id + 'amount').value, "initCost", false, false, false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+            document.getElementById(item.id + 'upkeep').innerHTML = jsonCostsToString(item.upkeepJSON, document.getElementById(item.id + 'amount').value, "upkeep", false, false, false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+            document.getElementById(item.id + 'crew').innerHTML = listMetaToString(item.costJSON.crew, document.getElementById(item.id + 'amount').value, "initCost", false, false, false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+            document.getElementById(item.id + 'capacity').innerHTML = listMetaToString(item.costJSON.capacity, document.getElementById(item.id + 'amount').value, "initCost", false, false, true, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+            document.getElementById(item.id + 'efficiency').innerHTML = efficiencyFixer(item.efficiency, item.id)
             document.getElementById(item.id + "amount").addEventListener("change", e => {
-                if (document.getElementById(item.id + "amount").value < 1) document.getElementById(item.id + "amount").value = 1
-                document.getElementById(item.id + 'initCost').innerHTML = jsonCostsToString(item.costJSON, document.getElementById(item.id + 'amount').value)
-                document.getElementById(item.id + 'upkeep').innerHTML = jsonCostsToString(item.upkeepJSON, document.getElementById(item.id + 'amount').value)
-
+                if (document.getElementById(item.id + "amount").value < 0) document.getElementById(item.id + "amount").value = 0
+                if (document.getElementById(item.id + "amount").value > document.getElementById(item.id + "amount").getAttribute("previousVal")) {
+                    document.getElementById(item.id + 'initCost').innerHTML = jsonCostsToString(item.costJSON, document.getElementById(item.id + 'amount').value, "initCost", false, false, false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+                    document.getElementById(item.id + 'upkeep').innerHTML = jsonCostsToString(item.upkeepJSON, document.getElementById(item.id + 'amount').value, "upkeep", false, false, false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+                    document.getElementById(item.id + 'crew').innerHTML = listMetaToString(item.costJSON.crew, document.getElementById(item.id + 'amount').value, "initCost", false, false, false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+                    document.getElementById(item.id + 'capacity').innerHTML = listMetaToString(item.costJSON.capacity, document.getElementById(item.id + 'amount').value, "initCost", false, false, true, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+                    document.getElementById(item.id + 'efficiency').innerHTML = efficiencyFixer(item.efficiency, item.id)
+                    totalRender()
+                } else {
+                    document.getElementById(item.id + 'initCost').innerHTML = jsonCostsToString(item.costJSON, document.getElementById(item.id + 'amount').value, "initCost", false, "sub", false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+                    document.getElementById(item.id + 'upkeep').innerHTML = jsonCostsToString(item.upkeepJSON, document.getElementById(item.id + 'amount').value, "upkeep", false, "sub", false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+                    document.getElementById(item.id + 'crew').innerHTML = listMetaToString(item.costJSON.crew, document.getElementById(item.id + 'amount').value, "initCost", false, "sub", false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+                    document.getElementById(item.id + 'capacity').innerHTML = listMetaToString(item.costJSON.capacity, document.getElementById(item.id + 'amount').value, "initCost", false, "sub", false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+                    document.getElementById(item.id + 'efficiency').innerHTML = efficiencyFixer(item.efficiency, item.id)
+                    totalRender()
+                }
+                document.getElementById(item.id + "amount").setAttribute("previousVal", document.getElementById(item.id + "amount").value)
             })
-                itemIndex ++
+            itemIndex++
         })
-        categoryIndex ++
+        categoryIndex++
     })
 }
 
-function highlightHash() {
+function totalRender() {
+    if (tab === "init") {
+        document.getElementById("totalContainer").innerHTML = "<b>Initial cost</b><br><br>" + jsonCostsToString(totalInit, 1, "noTons", true, false, true)
+    } else if (tab === "jobs") {
+        document.getElementById("totalContainer").innerHTML = "<b>Positions</b><br><br>" + jsonCostsToString(totalCrew, 1, "noTons", true, false, true) + "<hr><b>Capacity</b><br><br>" + jsonCostsToString(totalCapacity, 1, "noTons", true, false, true)
+    } else if (tab === "upkeep") {
+        document.getElementById("totalContainer").innerHTML = "<b>Upkeep costs</b><br><br>" + jsonCostsToString(totalUpkeep, 1, "noTons", true, false, true)
+    }
 
-    let toHL = document.getElementById(window.location.hash.substring(1))
-    if (toHL !== null) toHL.classList.add("inURLHash")
+    Object.keys(tech).forEach(x => {
+        document.getElementById("techList").insertAdjacentHTML("beforeend", `<b style="color: #0000c4; cursor: pointer"><a onclick="document.getElementById(window.location.hash.substring(1)).classList.remove('inURLHash'); window.location.hash = '${x}'; highlightHash()">${techTitles[x]}</a></b><br>`)
+        Object.keys(tech[x]).forEach(y => {
+            document.getElementById("techList").insertAdjacentHTML("beforeend", `<a style="color: #8d0000; cursor: pointer" onclick="document.getElementById(window.location.hash.substring(1)).classList.remove('inURLHash'); window.location.hash = '${tech[x][y].id}'; highlightHash()">${tech[x][y].name}</a><br>`)
+        })
+    })
+    document.getElementById("clearAll").setAttribute("style", "width: " + (document.getElementById("techList").clientWidth-1) + "px")
 }
 
-function jsonCostsToString(object, multiplier){
+function efficiencyFixer(ef, id) {
+    if (!isNaN(ef)) return (ef * document.getElementById(id + 'amount').value).toString(); else return "N/A"
+}
+
+function highlightHash() {
+    let toHL = document.getElementById(window.location.hash.substring(1))
+    if (toHL !== null) toHL.classList.add("inURLHash")
+    toHL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+}
+
+function listMetaToString(list, multiplier) {
+    if (list[0] === "") {
+        if (list[1] === "N/A") {
+            return "N/A"
+        } else {
+            return "<span style='color: red'>Incomplete data</span>"
+        }
+    } else {
+        return list[0] * multiplier + " " + list[1]
+    }
+}
+
+function jsonCostsToString(object, multiplier, upkeepOrInit, dontprice, sub, nofix, priceMultiplier) {
+    console.log(priceMultiplier)
     let element = ""
     Object.keys(object).forEach(key => {
-        if (key !== "pricetag"){
-            if (key !== "crew"){
-                if (object[key] === 1){
-                    element = element + (object[key] * multiplier).toString() + " ton of " + key + "<br>";
-                } else {
-                    element = element + (object[key] * multiplier).toString() + " tons of " + key + "<br>";
-                }
+        let FlPoErFixer = "1";
+        if (object[key].toString().includes(".") && nofix === false) {
+            let places = object[key].toString().split(".")[1].length
+            for (let i = 0; i < places; i++) {
+                FlPoErFixer += "0"
+            }
+        }
+        if (key !== "pricetag" && key !== "capacity") {
+            if (key !== "crew") {
+                if (upkeepOrInit !== "noTons") {
+                    if (object[key] === 1) {
+                        element = element + (object[key] * FlPoErFixer * multiplier) / FlPoErFixer.toString() + " ton of " + key + "<br>";
+                    } else {
+                        element = element + (object[key] * FlPoErFixer * multiplier) / FlPoErFixer.toString() + " tons of " + key + "<br>";
+                    }
+                } else element = element + (object[key] * FlPoErFixer * multiplier).toString() + " " + key + "<br>";
             }
         } else {
-            element += (object[key]*multiplier).toString() + " Nocks<br>";
+            if (key === "pricetag") element += (object[key] * FlPoErFixer * multiplier) / FlPoErFixer.toString() + " Nocks<br>";
         }
+        if (!dontprice) {
+            if (upkeepOrInit === "initCost") {
+                if (key !== "crew" && key !== "capacity") {
+                    if (!isNaN(object[key])) {
+                        if (!totalInit[key]) totalInit[key] = 0
+
+                        if (!sub) {
+                            totalInit[key] += object[key] * ((priceMultiplier > 0) ? priceMultiplier : 1)
+                        } else {
+                            totalInit[key] -= object[key] * ((priceMultiplier > 0) ? priceMultiplier : 1)
+                        }
+                    }
+                } else {
+                    if (!isNaN(object[key][0])) {
+                        if (key === "crew") {
+                            if (!totalCrew[object[key][1]]) totalCrew[object[key][1]] = 0;
+                            if (!sub) {
+                                totalCrew[object[key][1]] += object[key][0] * ((priceMultiplier > 0) ? priceMultiplier : 1)
+                            } else {
+                                totalCrew[object[key][1]] -= object[key][0] * ((priceMultiplier > 0) ? priceMultiplier : 1)
+                            }
+                            delete totalCrew["N/A"]
+
+                        } else {
+                            if (key === "capacity") {
+                                if (!totalCapacity[object[key][1]]) totalCapacity[object[key][1]] = 0;
+                                if (!sub) {
+                                    totalCapacity[object[key][1]] += object[key][0] * ((priceMultiplier > 0) ? priceMultiplier : 1)
+                                } else {
+                                    totalCapacity[object[key][1]] -= object[key][0] * ((priceMultiplier > 0) ? priceMultiplier : 1)
+                                }
+                                delete totalCapacity["N/A"]
+
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (key !== "crew" && key !== "capacity") {
+
+                    if (!isNaN(object[key])) {
+                        if (!totalUpkeep[key]) totalUpkeep[key] = 0
+                        if (!sub) {
+                            totalUpkeep[key] += object[key] * priceMultiplier
+                        } else {
+                            totalUpkeep[key] -= object[key] * priceMultiplier
+                        }
+
+                    }
+                } else {
+                }
+            }
+        }
+
     })
     return element
 }
@@ -371,5 +501,6 @@ function jsonCostsToString(object, multiplier){
 function runFuncs() {
     renderTech()
     highlightHash()
+    totalRender()
 }
 
