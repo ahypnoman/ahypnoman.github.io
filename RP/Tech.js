@@ -417,7 +417,6 @@ function listMetaToString(list, multiplier) {
 }
 
 function jsonCostsToString(object, multiplier, upkeepOrInit, dontprice, sub, nofix, priceMultiplier) {
-    console.log(priceMultiplier)
     let element = ""
     Object.keys(object).forEach(key => {
         let FlPoErFixer = "1";
