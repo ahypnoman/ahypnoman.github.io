@@ -346,10 +346,10 @@ function renderTech() {
 </div>
 </div>
 `)
-            document.getElementById(item.id + 'initCost').innerHTML = jsonCostsToString(item.costJSON, document.getElementById(item.id + 'amount').value, "initCost", false, false, false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
-            document.getElementById(item.id + 'upkeep').innerHTML = jsonCostsToString(item.upkeepJSON, document.getElementById(item.id + 'amount').value, "upkeep", false, false, false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
-            document.getElementById(item.id + 'crew').innerHTML = listMetaToString(item.costJSON.crew, document.getElementById(item.id + 'amount').value, "initCost", false, false, false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
-            document.getElementById(item.id + 'capacity').innerHTML = listMetaToString(item.costJSON.capacity, document.getElementById(item.id + 'amount').value, "initCost", false, false, true, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+            document.getElementById(item.id + 'initCost').innerHTML = jsonCostsToString(item.costJSON, document.getElementById(item.id + 'amount').value, "initCost", false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+            document.getElementById(item.id + 'upkeep').innerHTML = jsonCostsToString(item.upkeepJSON, document.getElementById(item.id + 'amount').value, "upkeep", false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+            document.getElementById(item.id + 'crew').innerHTML = listMetaToString(item.costJSON.crew, document.getElementById(item.id + 'amount').value, "initCost", false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
+            document.getElementById(item.id + 'capacity').innerHTML = listMetaToString(item.costJSON.capacity, document.getElementById(item.id + 'amount').value, "initCost", false, Math.abs(document.getElementById(item.id + 'amount').value - document.getElementById(item.id + 'amount').getAttribute("previousVal")))
             document.getElementById(item.id + 'efficiency').innerHTML = efficiencyFixer(item.efficiency, item.id)
             document.getElementById(item.id + "amount").addEventListener("change", e => {
                 if (document.getElementById(item.id + "amount").value < 0) document.getElementById(item.id + "amount").value = 0
@@ -500,7 +500,7 @@ function jsonCostsToString(object, multiplier, upkeepOrInit, dontprice, sub, nof
 
 function runFuncs() {
     renderTech()
-    highlightHash()
+    if(window.location.hash.substring(1) !== '')highlightHash()
     totalRender()
 }
 
