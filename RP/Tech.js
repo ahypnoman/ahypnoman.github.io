@@ -94,6 +94,71 @@ let tech = {
             "image": "images/Wagon.jpeg",
             "alt": "Image of a wagon",
             "efficiency": "N/A"
+        },
+        {
+            "name": "Train",
+            "id": "Train",
+            "civLevel": "2",
+            "description": "Trains are the most advanced method of land transportation. They are fairly fast and average 50mph on open land. Every 1,200 trips, a train  explodes, losing all crew and the train.\nPrices below are for 5 cars and a locomotive.",
+            "jobs": "1-10 horses",
+            "costStr": "2-5 tons of metal\n10-20 tons of timber\n20,000 Nocks",
+            "costJSON": {
+                "pricetag": 100000,
+                "metal": 600,
+                "timber": 500,
+                "crew": [5, "people"],
+                "capacity": [0, "Not provided"]
+            },
+            "upkeepStr": "0.2 tons of metal\n2 tons of timber\n2,000 Nocks",
+            "upkeepJSON": {
+                "pricetag": 2000,
+                "metal": 50,
+                "fuel": 1000,
+                "water": 40000
+            },
+            "capacity": "20 tons",
+            "image": "images/Train.jpeg",
+            "alt": "Image of a train",
+            "efficiency": "N/A"
+        },
+        {
+            "name": "Railway",
+            "id": "rail",
+            "civLevel": "2",
+            "description": "Rails are used for Trains to run on. You lose 1% of the workers that you assign to build a railway due to dangerous conditions and hard work. Prices listed are for 1 mile of track.",
+            "jobs": "1-10 horses",
+            "costJSON": {
+                "metal": 50,
+                "timber": 10,
+                "building material": 5,
+                "crew": ["", "N/A"],
+                "capacity": ["", "N/A"]
+            },
+            "upkeepJSON": {"pricetag":0},
+            "capacity": "20 tons",
+            "image": "images/rail.jpeg",
+            "alt": "Image of a railway",
+            "efficiency": "N/A",
+            "crew": ["", "N/A"],
+        },
+        {
+            "name": "Railway bridge",
+            "id": "railbridge",
+            "civLevel": "2",
+            "description": "Rails but above water.\nPrices listed are for 1 mile of track.",
+            "jobs": "1-10 horses",
+            "costJSON": {
+                "metal": 0.5,
+                "timber": 5,
+                "rail": 1,
+                "crew": ["", "N/A"],
+                "capacity": ["", "N/A"]
+            },
+            "upkeepJSON": {},
+            "capacity": "20 tons",
+            "image": "images/railbridge.jpeg",
+            "alt": "Image of a railway bridge",
+            "efficiency": "N/A"
         }
     ],
     "Civilian-Equipment": [
@@ -198,6 +263,28 @@ let tech = {
             "image": "images/Plough.jpeg",
             "alt": "Image of a Plough",
             "efficiency": 0.5
+        },
+        {
+            "name": "Dynamite",
+            "id": "Dynamite",
+            "civLevel": "2",
+            "description": "Dynamite is a useful explosive in mining and building. Using it on mountainous terrain can lower railway building  costs by 10%, and increase mining efficiency by 0.1%. Prices per ton.",
+            "jobs": "2 horses",
+            "costJSON": {
+                "pricetag": 100,
+                "metal": 1,
+                "Building material": 1,
+                "crew": ["", "N/A"],
+                "capacity": ["", "N/A"]
+            },
+            "upkeepJSON": {
+                "preicetag":0,
+                "metal": 0.1,
+            },
+            "capacity": "N/A",
+            "image": "images/Dynamite.jpeg",
+            "alt": "Image of Dynamite",
+            "efficiency": "N/A"
         }
     ],
     "Military-Equipment": [
@@ -417,6 +504,7 @@ function listMetaToString(list, multiplier) {
 }
 
 function jsonCostsToString(object, multiplier, upkeepOrInit, dontprice, sub, nofix, priceMultiplier) {
+    console.log(priceMultiplier)
     let element = ""
     Object.keys(object).forEach(key => {
         let FlPoErFixer = "1";
