@@ -12,7 +12,7 @@ function loader(){
         newScript.src = scr
         head.appendChild(newScript)
     })
-    let resources = ["styles.css"]
+    let resources = ["../styles.css"]
 
     resources.forEach(resource => {
         const newResource = document.createElement("link")
