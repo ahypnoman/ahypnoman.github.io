@@ -473,9 +473,9 @@ function totalRender() {
     }
 
     Object.keys(tech).forEach(x => {
-        document.getElementById("techList").insertAdjacentHTML("beforeend", `<b style="color: #0000c4; cursor: pointer"><a onclick="document.getElementById(window.location.hash.substring(1)).classList.remove('inURLHash'); window.location.hash = '${x}'; highlightHash()">${techTitles[x]}</a></b><br>`)
+        document.getElementById("techList").insertAdjacentHTML("beforeend", `<b style="color: #0000c4; cursor: pointer"><a onclick="try {document.getElementById(window.location.hash.substring(1)).classList.remove('inURLHash')}catch{} window.location.hash = '${x}'; highlightHash()">${techTitles[x]}</a></b><br>`)
         Object.keys(tech[x]).forEach(y => {
-            document.getElementById("techList").insertAdjacentHTML("beforeend", `<a style="color: #8d0000; cursor: pointer" onclick="document.getElementById(window.location.hash.substring(1)).classList.remove('inURLHash'); window.location.hash = '${tech[x][y].id}'; highlightHash()">${tech[x][y].name}</a><br>`)
+            document.getElementById("techList").insertAdjacentHTML("beforeend", `<a style="color: #8d0000; cursor: pointer" onclick="try {document.getElementById(window.location.hash.substring(1)).classList.remove('inURLHash')}catch{} window.location.hash = '${tech[x][y].id}'; highlightHash()">${tech[x][y].name}</a><br>`)
         })
     })
     document.getElementById("clearAll").setAttribute("style", "width: " + (document.getElementById("techList").clientWidth-1) + "px")
