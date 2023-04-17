@@ -203,7 +203,6 @@ pre.code > code {
     width: 100vw;
     overflow-x: scroll;
     margin: 0;
-    /* Moz only vvv */
     scrollbar-width: none;
     /* Moz only ^^^ */
 }

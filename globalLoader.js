@@ -5,7 +5,7 @@ window.addEventListener("load", loader)
 function loader(){
     let head = document.head
 
-    let scripts = ["globalButtons.js"]
+    let scripts = ["../globalButtons.js"]
 
     scripts.forEach(scr => {
         const newScript = document.createElement("script")

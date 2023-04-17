@@ -1,0 +1,1673 @@
+/*Sorry for how awfully formatted this is - I didn't plan any of this beforehand*/
+
+body{
+    margin: 0;
+    overscroll-behavior: none;
+    font-family: "Helvetica", sans-serif;
+    overflow: hidden;
+}
+
+.codeMenuWrapper{
+    height: 50vh;
+    margin: 0;
+    border: #E6E6E6 solid;
+    border-width: 1px 0 0 0;
+    box-sizing: border-box;
+    line-height: 0;
+    user-select: none;
+    display: flex;
+    position: relative;
+}
+
+.tree{
+    box-sizing: border-box;
+    border: #E6E6E6 solid;
+    border-width: 0 1px 0 0;
+    height: Calc(50vh - 60px);
+    width: min(30vw, 300px);
+    display: inline-block;
+    overflow: scroll;
+    line-height: normal;
+    white-space: nowrap;
+    position: relative;
+}
+
+.scrollHelper{
+    width: 10px;
+    height: 50vh;
+    display: inline-block;
+    top: 0;
+    position: fixed;
+    z-index: 1000001;
+    cursor: grabbing;
+}
+
+.name{
+    box-sizing: border-box;
+    padding: 10px;
+    border: #E6E6E6 solid;
+    border-width: 0 1px 1px 0;
+    height: 60px;
+    width: min(30vw, 300px);
+    overflow: scroll;
+    display: inline-block;
+    line-height: 59px;
+    font-size: 30px;
+    font-weight: bold;
+    word-break: keep-all;
+    white-space: nowrap;
+    outline: none;
+}
+
+.name:hover, .name:focus{
+    background-color: #d9e2ed;
+}
+
+.treeItem{
+    height: 30px;
+    line-height: 30px;
+    background: #ffffff;
+    cursor: pointer;
+    width: max-content;
+    display: block;
+    padding: 0 6px 0 0;
+    box-sizing: border-box;
+    border: none;
+    font-size: inherit;
+    text-align: left;
+    border-radius: 0;
+    position: relative;
+}
+
+.treeItem.topLevel{
+    border: #E6E6E6 solid;
+    border-width: 1px 0 0 0;
+}
+
+.treeItem .treeBottomLevel{
+    border: #000000 solid;
+    border-width: 0 0 0 1px;
+    padding-left: 6px;
+    margin-left: 6px;
+    display: inline-block;
+    height: 100%;
+    line-height: 30px;
+}
+
+.treeItem:hover{
+    background-color: #d9e2ed;
+}
+
+.treeItem:focus-visible::after, .section:focus-visible::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: #015ecc 2px solid;
+    box-sizing: border-box;
+    outline: none;
+    z-index: 10000000000000000;
+}
+
+.treeItem:focus-visible, .section:focus-visible{
+    outline: none;
+    background-color: #d9e2ed;
+}
+
+.snapPointStart{
+    position: absolute;
+    top: -1px;
+    right: -1px;
+}
+
+.snapPoint{
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    display: inline-block;
+    /*width: 1px;*/
+    /*height: 1px;*/
+    /*background: red;*/
+}
+
+.treeIcon{
+    background: #ffffff;
+    line-height: 30px;
+    box-sizing: border-box;
+    width: 40px;
+    border: #E6E6E6 solid;
+    border-width: 0 1px 0 0;
+    margin-right: 6px;
+    display: inline-flex;
+    float: left;
+    height: 100%;
+    justify-content: center;
+}
+
+.codeMenu{
+    position: relative;
+    box-sizing: border-box;
+    height: 50vh;
+    margin: 0;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    /*padding-left: calc(50% - calc(63px / 2));*/
+    overflow: scroll;
+}
+
+.block{
+    display: inline-block;
+    position: relative;
+    width: 168px;
+    height: 104px;
+    box-sizing: border-box;
+    transition: scale 0.25s linear 0s;
+    overflow: visible;
+    margin-left: 1px;
+    user-select: none;
+    transform: translate(-1px, 0);
+    flex-shrink: 0;
+}
+
+.block:not(.dragging):hover{
+    cursor: grab;
+}
+
+.block.dragging:hover{
+    cursor: grabbing;
+}
+
+.blockTop{
+    position: absolute;
+    width: calc(100% - 1px);
+    height: calc(50% - 8px);
+    border: #ffffff solid;
+    border-width: 1px 1px 0 1px;
+    z-index: 100001;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+}
+
+.blockBottom{
+    position: absolute;
+    width: calc(100% - 1px);
+    height: calc(50% - 8px);
+    border: #ffffff solid;
+    border-width: 0 1px 1px 1px;
+    z-index: 100002;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.block::after,.silhouette::after{
+    content: "";
+    position: absolute;
+    margin-bottom: -100px;
+    background-color: var(--block-color);
+    border: solid #ffffff;
+    border-width: 1px 1px 0 0;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    right: -0.5px;
+    transform: translate(50%, -50%) rotate(45deg);
+    z-index: 100000;
+}
+
+.innerBlock{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: normal;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.innerBlock::after{
+    content: "";
+    position:absolute;
+    box-shadow: 0 0 0 1000px var(--block-color);
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    left: 1px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border: solid #ffffff;
+    border-width: 1px 1px 0 0;
+}
+
+.blockSymbol{
+    font-size: 50px;
+}
+
+.centered{
+    text-align: center;
+    pointer-events: none;
+    z-index: 1000002;
+}
+
+.silhouette{
+    display: inline-block;
+    position: relative;
+    width: 168px;
+    height: 104px;
+    box-sizing: border-box;
+    overflow: visible;
+    margin-left: 1px;
+    /*border: 1px solid #ffffff00;*/
+    transform: translate(-1px, 0);
+    opacity: 0.2;
+}
+
+.start{
+    color: #ffffff;
+    display: inline-flex;
+    position: relative;
+    width: 63px;
+    height: 104px;
+    border-radius: 20px 0 0 20px;
+    background: #ffd504;
+    align-items: center;
+    justify-content: center;
+    border: #ffffff 1px solid;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    flex-direction: column;
+}
+
+.end{
+    color: #ffffff;
+    display: inline-flex;
+    position: relative;
+    width: 63px;
+    height: 104px;
+    border-radius: 0 20px 20px 0;
+    align-items: center;
+    justify-content: center;
+    border: #ffffff solid;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-width: 1px 1px 1px 0;
+    flex-shrink: 0;
+    flex-direction: column;
+}
+
+.start img, .end img{
+    height: 57.5px;
+    transform: scale(1.3);
+}
+
+.scriptWrapperOuter{
+    box-sizing: border-box;
+    display: inline-flex;
+    margin: calc(25vh - 54px) calc(50vw - 42.5px) calc(25vh - 54px) calc(50vw - 42.5px);
+    position: relative;
+    left: 0;
+    align-items: center;
+}
+
+.loop{
+    position: absolute;
+    display: inline-block;
+    height: 144px;
+    top: 50%;
+    transform: translate(0, -50%);
+    background: #ffac16;
+    border-radius: 150px;
+    border: 1px solid #ffffff;
+}
+
+.nameWrapper{
+    position: absolute;
+    top: calc(50% - 73px);
+    left: 15px;
+    width: max-content;
+    z-index: 100000;
+}
+
+.scriptOptionsButton{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.scriptOptionsButton:hover{
+    opacity: 1;
+}
+
+.scriptName{
+    font-size: 16px;
+    border: none;
+    padding: 1px;
+    position: absolute;
+    top: 50%;
+    left: 18.3px;
+    transform: translate(0, -50%);
+    user-select: none;
+    border-radius: 2px;
+    background: #ffffff;
+    white-space: nowrap;
+}
+
+.scriptName:focus,.scriptName:hover{
+    outline: 2px #e6e6e6 solid;
+}
+
+.scriptName::placeholder{
+    color: #e6e6e6;
+}
+
+.error{
+    width: 170px;
+    height: 184px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.errorTop{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    border: solid #ff0000;
+    border-width: 1px 1px 0 1px;
+    position: relative;
+    height: 25px;
+    box-sizing: border-box;
+}
+
+.errorTop::before{
+    content: "Error:";
+    color: #ff0000;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.errorTop::after{
+    content: "";
+    background: #ff0000;
+    position: absolute;
+    top: -20px;
+    left: calc(50% - 0.5px);
+    height: 20px;
+    width: 1px;
+}
+
+.errorBottom{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    border: solid #ff0000;
+    border-width: 0 1px 1px 1px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 25px;
+    box-sizing: border-box;
+}
+
+.errorBottom::before{
+    content: var(--error);
+    color: #ff0000;
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+}
+
+.errorBottom::after{
+    content: "";
+    background: #ff0000;
+    position: absolute;
+    bottom: -20px;
+    left: calc(50% - 0.5px);
+    height: 20px;
+    width: 1px;
+}
+
+.dragging{
+    position: absolute;
+    opacity: 50%;
+    z-index: 1000000;
+    /*pointer-events: none;*/
+}
+
+.pattern{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+.blockHolder{
+    height: 0;
+    z-index: 1000000;
+}
+
+.sectionsWrapper{
+    box-sizing: border-box;
+    border: #E6E6E6 solid;
+    border-width: 0 0 1px 0;
+    width: calc(100vw - min(30vw, 300px));
+    height: 60px;
+    overflow: scroll;
+    display: inline-block;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.section{
+    text-align: center;
+    display: inline-flex;
+    padding: 4px;
+    cursor: pointer;
+    pointer-events: all;
+    box-sizing: border-box;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: none;
+    background: #ffffff;
+    font: inherit;
+    position: relative;;
+}
+
+.section:hover{
+    background: #d9e2ed;
+}
+
+.sectionCircle{
+    display: inline-block;
+    width: 29px;
+    height: 29px;
+    border-radius: 100%;
+    position: relative;
+    pointer-events: none;
+}
+
+.sectionCircle::before{
+    content: "";
+    display: inline-block;
+    width: 29px;
+    height: 29px;
+    border: #00000060 2px solid;
+    box-sizing: border-box;
+    border-radius: 100%;
+    pointer-events: none;
+}
+
+.codeMenuContent{
+    flex-grow: 1;
+}
+
+.paletteHolderOuter{
+    width: calc(100vw - min(30vw, 300px));
+    overflow: hidden;
+}
+
+.paletteHolder{
+    width: calc(100vw - min(30vw, 300px));
+    scroll-snap-type: y mandatory;
+    height: calc(123px);
+    padding: calc(25vh - 92px) 0 calc(25vh - 92px) calc(25vh - 104px);
+    overflow: scroll;
+}
+
+.paletteScript{
+    line-height: normal;
+    box-sizing: border-box;
+    display: flex;
+    height: 104px;
+    width: fit-content;
+}
+
+.block.fake{
+    opacity: inherit;
+    /*transition: transform 0s;*/
+}
+
+.paletteScriptWrapper{
+    height: 123px;
+    overflow: hidden;
+    scroll-snap-align: center;
+    width: max-content;
+    padding-right: calc(25vh - 92px);
+    /*margin: 20px 0 20px 0;*/
+}
+
+.paletteScriptOuter{
+    line-height: normal;
+    width: 100%;
+
+}
+
+.sectionName{
+    padding-left: 15px;
+}
+
+.sectionCircleSmall{
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border-radius: 100%;
+    position: relative;
+    margin-left: 5px;
+}
+
+.sectionCircleSmall::before{
+    content: "";
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border: #00000060 2px solid;
+    box-sizing: border-box;
+    border-radius: 100%;
+    position: absolute;
+}
+
+.shrinkOut{
+    scale: 0;
+    opacity: 50%;
+    z-index: 1000000;
+    position: absolute;
+    pointer-events: none;
+}
+
+.start.fake{
+    background: #e6e6e6;
+    font-size: 50px;
+    display: inline-block;
+    line-height: 96px;
+    text-align: center;
+}
+
+.start.custom{
+    background: #ff6680;
+}
+
+.end.fake{
+    font-size: 50px;
+    display: inline-block;
+    line-height: 96px;
+    text-align: center;
+}
+
+.start::after{
+    content: "";
+    position: absolute;
+    margin-bottom: -100px;
+    background-color: #ffd504;
+    border: solid #ffffff;
+    border-width: 1px 1px 0 0;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    right: -0.5px;
+    transform: translate(50%, -50%) rotate(45deg);
+    z-index: 100000;
+}
+
+.start.fake::after{
+    background-color: #e6e6e6;
+}
+
+.start.custom::after{
+    background-color: #ff6680;
+}
+
+.end::after {
+    content: "";
+    position:absolute;
+    box-shadow: 0 0 0 1000px #ffd504;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    left: 1px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border: solid #ffffff;
+    border-width: 1px 1px 0 0;
+    z-index: -1;
+}
+
+.end.fake::after{
+    box-shadow: 0 0 0 100vmax #e6e6e6;
+}
+
+.end.custom::after{
+    box-shadow: 0 0 0 100vmax #ff6680
+}
+
+.roundButton{
+    border: 5px solid #e6e6e6;
+    border-radius: 50px;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    opacity: 0.5;
+    z-index: 100000;
+    color: #4d97ff;
+    cursor: pointer;
+    background: #ffffff;
+}
+
+.roundButton:hover{
+    opacity: 1;
+}
+
+.roundButton::before{
+    content: var(--button-icon);
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+}
+
+.roundButton::after{
+    content: var(--button-content);
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+}
+
+.normalInput{
+    outline: 2px #e6e6e6 solid;
+    border: 0;
+    border-radius: 2px;
+    cursor: text;
+    display: inline-block;
+    padding: 1px;
+    font-size: 16px;
+    height: min-content;
+}
+
+.normalInput::placeholder{
+    color: #e6e6e6;
+}
+
+.measurements{
+    visibility: hidden;
+    pointer-events: none;
+    display: inline-block;
+    white-space: pre;
+    position: fixed;
+    z-index: -10000000000;
+}
+
+.rectButton{
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    font-size: 24px;
+    background-color: #ffffff;
+    color: #e6e6e6;
+    margin-left: 10px;
+    font-weight: bold;
+    transition: filter 0.5s, transform 0.5s;
+}
+
+.rectButton::after{
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: #00000019 2px solid;
+    box-sizing: border-box;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.rectButton:hover, .rectButton:focus-visible{
+    filter: brightness(0.9);
+    outline: none;
+}
+
+.rectButton:focus-visible{
+    filter: brightness(70%);
+}
+
+.rectButton.inactive img{
+    filter: brightness(90%);
+}
+
+.buttonWithImage{
+    padding: 5px;
+    border-radius: 5px;
+    position: relative;
+    font-size: 14px;
+    background-color: #4d97ff;
+    border: #3f78cc 3px solid;
+    color: #ffffff;
+    font-weight: bold;
+    height: min-content;
+    margin: 10px;
+    transition: transform 0.5s;
+    cursor: pointer;
+}
+
+.buttonWithImage:hover,.buttonWithImage:focus-visible{
+    transform: scale(1.1);
+    outline: none;
+}
+
+.buttonWithImage img{
+    display: block;
+    margin-top: 5px;
+}
+
+.scriptWrapper{
+    width: max-content;
+    box-sizing: border-box;
+    display: inline-flex;
+    left: 0;
+    align-items: center;
+}
+
+.whiteBG{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    background-color: #ffffff;
+    z-index: 100000000000;
+}
+
+.viewTitle{
+    font-weight: bold;
+    border-bottom: 3px #e6e6e6 solid;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 70px;
+    font-size: 30px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+}
+
+.debugScriptWrapper{
+    display: flex;
+    align-items: center;
+    padding: 0 calc(50% - 31.5px) 0 calc(50% - 31.5px);
+    width: max-content;
+    pointer-events: none;
+    user-select: none;
+    position: relative;
+}
+
+.debugScriptWrapperHolder{
+    position: absolute;
+    top: calc(50% - 22.5px);
+    left: 0;
+    transform: translate(0, -50%);
+    overflow: scroll;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    scrollbar-width: none;
+    pointer-events: none;
+    user-select: none;
+}
+
+.debugScriptWrapperHolder::-webkit-scrollbar{
+     display: none;
+ }
+
+.memDisplayBg{
+    background: #e6e6e6;
+    height: 15px;
+    width: 100%;
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    transform: translate(0, 50%);
+}
+
+.memDisplayWrapper{
+    height: 180px;
+    width: 100%;
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transform: translate(0, 50%);
+    overflow: scroll;
+    pointer-events: none;
+    scrollbar-width: none;
+}
+
+.memDisplayWrapper::-webkit-scrollbar{
+    display: none;
+}
+
+.memBlock{
+    max-width: 40px;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    margin: 0 15px;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    background: white;
+    border: #e6e6e6 5px solid;
+    border-radius: 30px;
+    box-sizing: border-box;
+    user-select: none;
+    position: relative;;
+    overflow: visible;
+}
+
+.atPointer::before{
+    content: url("icons/Pointer.svg");
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.memoryTitle{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    position: absolute;
+    bottom: 140px;
+    left: 0;
+    background: #ffffff;
+    font-weight: bold;
+}
+
+.glowing{
+    z-index: 1000000000000000000000000000000000;
+    scale: 1.005;
+}
+
+.glowing .blockTop, .glowing .blockBottom, .glowing .innerBlock::after, .glowing::after{
+    border-color: #fffa00;
+}
+
+.glowing .blockTop{
+    border-width: 3px 3px 0 3px;
+}
+
+.glowing .blockBottom{
+    border-width: 0 3px 3px 3px;
+}
+
+.glowing .blockBottom, .glowing .blockTop{
+    height: calc(50% - 10px);
+    width: calc(100% - 2px);
+}
+
+.glowing .innerBlock::after, .glowing::after{
+    border-width: 3px 3px 0 0;
+    translate: 1px 0;
+}
+.glowing::after{
+    translate: 2.5px 0;
+}
+
+.runningButtonsHolder{
+    display: inline-block;
+}
+
+.modeButtonsWrapper{
+    position: absolute;
+    width: 100vw;
+    height: max-content;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid: 1fr / 1fr 1fr 1fr;
+    grid-column-gap: 1px;
+    border-top: 1px solid #e6e6e6;
+}
+
+.modeButton{
+    display: flex;
+    width: 100%;
+    background: #ffffff;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.mBSelected, .modeButton:hover{
+    background: #d9e2ed;
+}
+
+div.playerContentOuter{
+    position: absolute;
+    top: calc(50% + 10px);
+    left: 0;
+    transform: translate(0, -50%);
+    font-size: 30px;
+    overflow: scroll;
+    white-space: nowrap;
+    width: 100vw;
+    height: calc(100vh - 140px);
+}
+
+div.playerContent{
+    padding: calc(50vh - 136px) 50% 0 50%;
+    white-space: pre;
+}
+
+.playerContent{
+    width: max-content;
+    height: max-content;
+    transform: translate(0, -10px);
+}
+
+canvas.playerContent{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    image-rendering: pixelated;
+}
+
+.warning{
+    position: fixed;
+    border-radius: 10px;
+    background: #fff0df;
+    border: 1px solid #ff8c1a;
+    box-shadow: 0 0 0 2px #ff8c1a3f;
+    width: 570px;
+    top: 80px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    box-sizing: border-box;
+    padding: 16px;
+    height: 75px;
+    display: grid;
+    align-items: center;
+    z-index: 10000000000000000000;
+}
+
+.warning::before{
+    content: var(--warning-content);
+    max-width: 472px;
+}
+
+.warning button{
+    width: 41px;
+    height: 41px;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    background: #ff8c1a3f;
+    border: none;
+    border-radius: 41px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.warning button:hover{
+    background: #ff8c1a9f;
+}
+
+.warning button::after{
+    content: url("icons/Close.svg");
+    position: absolute;
+    top: 87%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.viewSideBar{
+    height: calc(100% - 93px);
+    width: min(30vw, 300px);
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: inline-block;
+    background-color: #f2f2f2;
+    box-sizing: border-box;
+    border: 3px solid #e6e6e6;
+    border-radius: 5px;
+    padding: 10px;
+    user-select: text;
+    overflow-wrap: break-word;
+    overflow: scroll;
+    white-space: pre-wrap;
+}
+
+div:not(.playerIdentifier) .viewSideBar:after{
+    content: "";
+    display: block;
+    width: calc(min(30vw, 300px) - 26px);
+    height: 53px;
+    background-image: url("images/LS_logo.svg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 10px;
+}
+
+.settingsViewContent, .helpContent{
+    display: inline-block;
+    position: absolute;
+    width: calc(100% - (min(30vw, 300px) * 2) - 20px);
+    height: calc(100% - 73px);
+    bottom: 0;
+    right: calc(min(30vw, 300px) + 10px);
+    overflow: scroll;
+    white-space: nowrap;
+    padding: 10px 10px 0 10px;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.sectionHeader, .settingsViewContent h1, .settingsSideBar h1, .settingsSideBar h2, .settingsViewContent h2, .settingsSideBar h3, .settingsViewContent h3{
+    font-weight: normal;
+    margin: 10px;
+    user-select: text;
+    overflow: scroll;
+    max-width: 100%;
+}
+
+.settingsSideBar h3, .settingsViewContent h3{
+    margin: 10px 10px 0 0;
+}
+
+.settingsSideBar h2, .settingsViewContent h2{
+    margin: 10px 10px 10px 0;
+}
+
+.settingsViewContent img, .helpContent img{
+    margin-top: 1vw;
+    width: 100%;
+    padding: 0 100px 10px 100px;
+    box-sizing: border-box;
+}
+
+.settingsViewContent button{
+    width: 100%;
+    display: block;
+    margin: 0 0 10px 0;
+    padding: 1ex;
+    text-align: left;
+    font-weight: normal;
+}
+
+.settingsSectionWrapper, .helpSection{
+    background-color: #f2f2f2;
+    box-sizing: border-box;
+    border: 3px solid #e6e6e6;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 24px;
+    margin-bottom: 10px;
+    overflow: scroll;
+    display: block;
+}
+
+.helpSection{
+    white-space: pre-wrap;
+}
+
+.settingsSectionWrapper button{
+    display: inline-block;
+    width: min-content;
+}
+
+.settingsSectionWrapper div{
+    display: grid;
+    grid-gap: 10px;
+    margin: 10px 0 0 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: min-content;
+}
+
+.settingsSectionWrapper div *{
+    text-align: center;
+    height: min-content;
+    margin: 0;
+    width: 100%;
+}
+
+.settingsSectionWrapper textarea{
+    display: block;
+    resize: none;
+    outline: none;
+    border: 3px solid #e6e6e6;
+    border-radius: 5px;
+    margin: 10px 0 0 0;
+    height: 200px;
+    width: 100%;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 5px;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.settingsSectionWrapper textarea::placeholder{
+    color: #e6e6e6;
+}
+
+.rectButton.inactive::before{
+    display: none;
+}
+
+.rectButton.inactive::after{
+    cursor: default;
+}
+
+label{
+    border-radius: 2px;
+    display: inline-block;
+    width: max-content;
+    height: max-content;
+    position: relative;
+    margin-left: 10px;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+input[type="checkbox"] + label::after{
+    content: "Off";
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+input[type="checkbox"]:checked + label::after{
+    content: "On";
+    color: #4d97ff;
+}
+
+.inputGrid{
+    display: grid;
+    grid: min-content / min-content auto;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+    height: min-content;
+    width: max-content;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.inputGrid input{
+    grid-column: 2;
+    text-align: left;
+}
+
+.inputGrid span{
+    grid-column: 1;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+a{
+    text-decoration: none;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.settingsSideBar{
+    height: calc(100% - 73px);
+    width: min(30vw, 300px);
+    padding: 0 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    overflow: scroll;
+}
+
+.sideBarSection{
+     display: block;
+     background-color: #f2f2f2;
+     box-sizing: border-box;
+     border: 3px solid #e6e6e6;
+     border-radius: 5px;
+     padding: 10px;
+     overflow: hidden;
+    margin-bottom: 10px;
+ }
+
+.sideBarSection button:focus-visible{
+    outline: none;
+    background: #d9e2ed;
+}
+
+.linkList{
+    list-style: none;
+    padding: 0 10px;
+    margin: 0 0 0 -10px;
+    max-height: 308px;
+    width: 100%;
+}
+
+.linkList li{
+    border-radius: 5px;
+    cursor: default;
+    overflow: scroll;
+    white-space: nowrap;
+    height: min-content;
+}
+
+li::after{
+    display: none;
+}
+
+.linkList li:hover{
+    background: #d9e2ed;
+}
+
+.linkList li:has(button:focus-visible){
+    background: #d9e2ed;
+}
+
+.linkList li button{
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    background: none;
+    border-radius: 0;
+    padding: 3px;
+    width: 100%;
+    text-align: left;
+    text-decoration: underline;
+    overflow: scroll;
+}
+
+.plainButton{
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    text-align: inherit;
+    text-decoration: underline;
+}
+
+.infoContainer{
+    display: inline-block;
+    font-family: Monospaced, monospace;
+    white-space: pre-wrap;
+    vertical-align: text-top;
+    overflow: scroll;
+    max-width: 100%;
+}
+
+.dropdownIcon{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: 5px solid #00000000;
+    border-top: 5px solid #000000;
+    position: absolute;
+    top: 50%;
+    left: calc(100% - 9.25px);
+    transform: translate(-50%, calc(-50% + 2.5px));
+}
+
+.dropdownWrapper{
+    position: fixed;
+    z-index: 10000000000000;
+    background: #00000033;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.dropdown{
+    position: fixed;
+    background: #ffffff;
+    max-height: none;
+    padding: 10px 0;
+    box-sizing: border-box;
+    border: 2px #e6e6e6 solid;
+    border-radius: 3px;
+}
+
+.dropdown ul{
+    max-height: calc(100% - 19.5px);
+    overflow: scroll;
+    padding: 6px 10px 0 10px;
+    box-sizing: border-box;
+}
+
+.hiddenUntilHovered{
+    opacity: 0;
+}
+
+li:hover .hiddenUntilHovered, li:has(button:focus-visible) .hiddenUntilHovered, .hiddenUntilHovered:focus-visible{
+    opacity: 1;
+}
+
+.toggle{
+    border-radius: 2px;
+    background: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    width: 2ex;
+    height: 2ex;
+    position: absolute;
+    border: 3px solid #e6e6e6;
+    padding: 1px;
+    font-size: inherit;
+    transform: translate(3px, 1px);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+button.toggle:focus-visible{
+    outline: #015ecc 2px solid;
+    background: #ffffff;
+ }
+button.toggle.ticked:focus-visible{
+    background: #4d97ff;
+}
+
+.toggle.ticked{
+    background: #4d97ff;
+}
+
+.toggle.ticked::after{
+    content: "";
+    box-sizing: border-box;
+    width: 14px;
+    height: 6px;
+    border: solid #ffffff;
+    border-width: 3px 3px 0 0;
+    transform: translate(0, -0.7px) rotate(135deg) scale(0.7);
+}
+
+:focus-visible .scriptOptionsButton{
+    background: #d9e2ed;
+    border-radius: 2px;
+    outline: #015ecc 2px solid;
+    opacity: 1;
+}
+
+button:has(.scriptOptionsButton){
+    outline: none;
+}
+
+.extensionSelector{
+    width: 420px;
+    height: 100px;
+    display: grid;
+    grid-gap: 30px;
+    grid: 1fr / 1fr 1fr 1fr;
+    text-align: center;
+    justify-items: center;
+    margin: 30px;
+    box-sizing: border-box;
+}
+
+.exSelectWrapper{
+    width: 100%;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    overflow: visible;
+}
+
+.exSelectBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 33px;
+    padding: 0;
+    border: 2px solid #e6e6e6;
+    border-radius: 3px;
+    background: #ffffff;
+    overflow: hidden;
+    height: 100px;
+    width: 120px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s, height 0.3s, box-shadow 0.3s;
+    font-size: 20px;
+    margin: 0;
+}
+
+.exSelectBlock img{
+    transform: scale(1.1);
+    width: 100%;
+}
+.exSelectBlock::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 66.5px;
+    z-index: 10000000000;
+    border-bottom: 2px solid #e6e6e6;
+}
+
+.exSelectBlock:hover, .exSelectBlock:focus-visible{
+    transform: scale(1.1);
+    outline: none;
+    box-shadow: 0 0 3px 1px #abababf0
+}
+
+.exSelectBlock::after{
+    content: var(--hover-content);
+    font-size: 11px;
+    line-height: normal;
+    padding: 0 8px 8px 8px;
+    text-align: left;
+    white-space: break-spaces;
+}
+
+a{
+    font-weight: bold;
+    color: #4d97ff;
+    position: relative;
+    z-index: 10;
+}
+
+a:hover{
+    color: #015ecc;
+}
+
+.tooltip{
+    opacity: 0;
+    content: attr(href);
+    position: fixed;
+    pointer-events: none;
+    transition: opacity 0.15s;
+    background: #e7e7e7c4;
+    border: #808080 1px solid;
+    font-weight: normal;
+    color: #000000;
+    padding: 1px;
+    z-index: 1000000000000000000000;
+    backdrop-filter: blur(2px);
+    white-space: break-spaces;
+    margin: 5px;
+}
+
+.hasTip:not(.plainButton){
+    cursor: help;
+}
+
+.hasTip:not(.plainButton)::after{
+    content: url("icons/Help.svg");
+    width: 1ex;
+    margin-left: 0.25em;
+    display: inline-block;
+}
+
+.projectWrapper{
+    display: inline-block;
+    width: calc(100% - min(30vw, 300px) - 30px);
+    height: calc(100% - 93px);
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.projectControls{
+    background: #e6eeff;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 5px;
+    height: 32px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.projectControl{
+    border-radius: 3px;
+    padding: 3px;
+    width: 26px;
+    height: 26px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.projectControl:hover{
+    background: #d9e2ed;
+}
+
+.projectViewer{
+    border: #e6e6e6 3px solid;
+    display: block;
+    height: calc(100% - 42px);
+    margin: 10px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    overflow: scroll;
+}
+
+.projectViewer .playerContent{
+    padding: 0;
+    transform: translate(0, 0);
+    overflow: hidden;
+}
+
+.projectContentWrapper{
+    height: calc(100% - 28px);
+    padding: 3px;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+
+.inputMenu{
+    height: 28px;
+    border-top: #e6e6e6 solid;
+    border-width: 3px 0 0 0;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+}
+
+.inputMenu button{
+    background: none;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 3px;
+    width: 60px;
+}
+
+.inputMenu input{
+    padding: 3px;
+    border-radius: 0;
+    font-size: inherit;
+    margin: 0;
+    width: calc(100% - 60px);
+    border: #e6e6e6 solid;
+    border-width: 0 3px 0 0;
+    box-sizing: border-box;
+    height: 100%;
+    transition: background-color 0.3s;
+}
+
+.inputMenu input::placeholder{
+    color: #e6e6e6;
+}
+
+.inputMenu input:focus{
+    outline: none;
+}
+
+.inputHolder{
+    width: calc(100% - 60px);
+}
+
+.unusedInput{
+    background: #d9e2ed;
+    user-select: none;
+    display: inline-block;
+    height: 101%;
+    line-height: 150%;
+    transform: translate(0, -2%);
+    padding: 0 3px 0 3px;
+}
+
+.usedInput{
+    color: #e6e6e6;
+    user-select: none;
+    display: inline-block;
+    height: 101%;
+    line-height: 150%;
+    transform: translate(0, -2%);
+    padding: 0 3px 0 3px;
+}
+
+textarea.description{
+    white-space: pre-wrap;
+}
+
+.loading{
+    background-color: #ffffff60;
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}

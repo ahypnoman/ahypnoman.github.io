@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>AHypnoman's Web Toys</title>
-    <script src="globalLoader.js"></script>
+    <script src="../globalLoader.js"></script>
 </head>
 <body>
 <div class="blueBackground">
@@ -12,11 +12,11 @@
 </div>
 
 <div class="container">
-    <div class="toysSection"><h2 style="padding: 0 0 10px 10px">Toys</h2>
+    <div style="z-index: 3;" class="toysSection"><h2 style="padding: 0 0 10px 10px">Toys</h2>
         <div class="contentHolderOuter">
             <div class="contentHolderInner">
-                <a href="webtoys/FizzBuzz.html" class="webtoyDescContainer blueBackground webtoyfizzbuzz">
-                    <div class="imgHolder"><img height="175px" width="300px" src="images/FizzBuzz.png"
+                <a href="FizzBuzz.html" class="webtoyDescContainer blueBackground webtoyfizzbuzz">
+                    <div class="imgHolder"><img height="175px" width="300px" src="../images/FizzBuzz.png"
                                                 style="object-fit: cover; object-position:-1%" alt="FizzBuzz image"
                                                 class="webtoyDescImg"></div>
                     <div class="textHolder">
@@ -27,18 +27,27 @@
                         </div>
                     </div>
                 </a>
-
             </div>
         </div>
     </div>
-    <div class="toolsSection"><h2 style="padding: 0 0 10px 10px">Tools</h2>
+    <div style="z-index: 2;" class="toolsSection"><h2 style="padding: 0 0 10px 10px">Tools</h2>
         <div class="contentHolderOuter">
             <div class="contentHolderInner">
-
+                <a href="LinearScratch" class="webtoyDescContainer blueBackground webtoyLS">
+                    <div class="imgHolder"><img height="175px" width="300px" src="../images/LS.png"
+                                                style="object-fit: cover; object-position:-1%" alt="FizzBuzz image"
+                                                class="webtoyDescImg"></div>
+                    <div class="textHolder">
+                        <h3 class="webtoyDesc">Linear Scratch</h3>
+                        <div class="detailsHolder">
+                            Linear Scratch is a port of one of my Scratch projects in JS. It is a visual editor for brainf***.
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-    <div class="gamesSection"><h2 style="padding: 0 0 10px 10px">Games</h2>
+    <div style="z-index: 1;" class="gamesSection"><h2 style="padding: 0 0 10px 10px">Games</h2>
         <div class="contentHolderOuter">
             <div class="contentHolderInner">
 

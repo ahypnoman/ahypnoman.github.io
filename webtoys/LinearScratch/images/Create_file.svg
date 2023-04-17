@@ -1,0 +1,299 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="127.36203"
+     height="154.57135" viewBox="0,0,127.36203,154.57135">
+    <g transform="translate(-176.31899,-130.5)">
+        <g data-paper-data="{&quot;isPaintingLayer&quot;:true}" fill-rule="nonzero" stroke-linejoin="miter"
+           stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" style="mix-blend-mode: normal">
+            <path d="M177.31917,135.92917c-0.02283,-2.22749 2.2102,-4.30964 4.43305,-4.32223c3.90328,-0.02211 102.05215,-0.00678 116.71738,-0.00155c2.00542,0.00045 4.21143,2.24023 4.21143,4.54543c0,4.22795 0,136.13589 0,143.5983c0,1.95182 -2.11347,4.32223 -4.43305,4.32223c-7.95247,0 -102.68437,0 -116.71742,0c-2.04897,0 -4.19343,-2.32752 -4.18734,-4.54278c0,0 0.06264,-135.14251 -0.02405,-143.5994z"
+                  fill="#15bd5d" stroke="#e6e6e6" stroke-width="0" stroke-linecap="butt"/>
+            <g fill="none">
+                <g>
+                    <g>
+                        <g stroke="#16c963" stroke-width="3
+" stroke-linecap="round">
+                            <path d="M235.32501,133h9.35"/>
+                            <path d="M240.00001,137.675c0,0 0,-3.95585 0,-5.675"
+                                  data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M235.32501,153h9.35"/>
+                            <path d="M240.00001,148.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M235.32501,173h9.35"/>
+                            <path d="M240.00001,168.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M235.32501,193h9.35"/>
+                            <path d="M240.00001,188.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M244.67501,213h-9.35"/>
+                            <path d="M240.00001,217.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M244.67501,233h-9.35"/>
+                            <path d="M240.00001,228.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M235.32501,253h9.35"/>
+                            <path d="M240.00001,248.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M244.67501,273h-9.35"/>
+                            <path d="M240.00001,268.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="none" stroke-width="1" stroke-linecap="butt" font-family="sans-serif"
+                           font-weight="normal" font-size="12" text-anchor="start"/>
+                    </g>
+                    <g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M255.32501,143h9.35"/>
+                            <path d="M260.00001,147.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M264.67501,163h-9.35"/>
+                            <path d="M260.00001,158.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M264.67501,183h-9.35"/>
+                            <path d="M260.00001,187.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M255.32501,203h9.35"/>
+                            <path d="M260.00001,198.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M255.32501,223h9.35"/>
+                            <path d="M260.00001,218.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M255.32501,243h9.35"/>
+                            <path d="M260.00001,247.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M264.67501,263h-9.35"/>
+                            <path d="M260.00001,258.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M264.67501,283h-9.35"/>
+                            <path d="M260.00001,278.325v5.1" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="none" stroke-width="1" stroke-linecap="butt" font-family="sans-serif"
+                           font-weight="normal" font-size="12" text-anchor="start"/>
+                    </g>
+                    <g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M275.325,133h9.35"/>
+                            <path d="M280.00001,132.25c0,1.66233 0,5.425 0,5.425"
+                                  data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M275.325,153h9.35"/>
+                            <path d="M280.00001,148.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M275.325,173h9.35"/>
+                            <path d="M280.00001,168.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M275.325,193h9.35"/>
+                            <path d="M280.00001,188.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M275.325,213h9.35"/>
+                            <path d="M280.00001,208.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M275.325,233h9.35"/>
+                            <path d="M280.00001,228.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M275.325,253h9.35"/>
+                            <path d="M280.00001,248.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M275.325,273h9.35"/>
+                            <path d="M280.00001,268.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="none" stroke-width="1" stroke-linecap="butt" font-family="sans-serif"
+                           font-weight="normal" font-size="12" text-anchor="start"/>
+                    </g>
+                    <g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M295.325,143c0,0 5.07368,0 6.8,0"/>
+                            <path d="M300.00001,138.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M295.325,163h6.85"/>
+                            <path d="M300.00001,167.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M295.325,183h6.85"/>
+                            <path d="M300.00001,178.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M295.325,203h6.85"/>
+                            <path d="M300.00001,198.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M295.325,223h6.85"/>
+                            <path d="M300.00001,218.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M295.325,243h6.85"/>
+                            <path d="M300.00001,238.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M295.325,263h6.85"/>
+                            <path d="M300.00001,258.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                            <path d="M295.325,283h4.6"/>
+                            <path d="M300.00001,278.325v4.6" data-paper-data="{&quot;index&quot;:null}"/>
+                        </g>
+                        <g stroke="none" stroke-width="1" stroke-linecap="butt" font-family="sans-serif"
+                           font-weight="normal" font-size="12" text-anchor="start"/>
+                    </g>
+                </g>
+                <g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M177.87501,143c1.65134,0 6.8,0 6.8,0"/>
+                        <path d="M180.00001,138.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M177.87501,163c1.65134,0 6.8,0 6.8,0"/>
+                        <path d="M180.00001,167.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M177.87501,183c1.65134,0 6.8,0 6.8,0"/>
+                        <path d="M180.00001,178.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M177.87501,203c1.65134,0 6.8,0 6.8,0"/>
+                        <path d="M180.00001,207.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M177.87501,223c1.65134,0 6.8,0 6.8,0"/>
+                        <path d="M180.00001,218.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M177.87501,243c1.65134,0 6.8,0 6.8,0"/>
+                        <path d="M180.00001,247.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M177.87501,263c1.60332,0 6.8,0 6.8,0"/>
+                        <path d="M180.00001,258.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M179.87501,283c1.72328,0 4.8,0 4.8,0"/>
+                        <path d="M180.00001,278.325c0,0 0,3.11667 0,4.675" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="none" stroke-width="1" stroke-linecap="butt" font-family="sans-serif"
+                       font-weight="normal" font-size="12" text-anchor="start"/>
+                </g>
+                <g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M195.32501,133h9.35"/>
+                        <path d="M200.00001,132.075v5.6" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M195.32501,153h9.35"/>
+                        <path d="M200.00001,148.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M204.67501,173h-9.35"/>
+                        <path d="M200.00001,168.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M195.32501,193h9.35"/>
+                        <path d="M200.00001,188.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M204.67501,213h-9.35"/>
+                        <path d="M200.00001,217.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M204.67501,233h-9.35"/>
+                        <path d="M200.00001,237.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M195.32501,253h9.35"/>
+                        <path d="M200.00001,257.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M204.67501,273h-9.35"/>
+                        <path d="M200.00001,268.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="none" stroke-width="1" stroke-linecap="butt" font-family="sans-serif"
+                       font-weight="normal" font-size="12" text-anchor="start"/>
+                </g>
+                <g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M215.32501,143h9.35"/>
+                        <path d="M220.00001,138.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M215.32501,163h9.35"/>
+                        <path d="M220.00001,158.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M224.67501,183h-9.35"/>
+                        <path d="M220.00001,178.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M215.32501,203h9.35"/>
+                        <path d="M220.00001,198.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M224.67501,223h-9.35"/>
+                        <path d="M220.00001,227.675v-9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M215.32501,243h9.35"/>
+                        <path d="M220.00001,238.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M224.67501,263h-9.35"/>
+                        <path d="M220.00001,258.325v9.35" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="#16c963" stroke-width="3" stroke-linecap="round">
+                        <path d="M224.67501,283h-9.35"/>
+                        <path d="M220.00001,278.325v5.1" data-paper-data="{&quot;index&quot;:null}"/>
+                    </g>
+                    <g stroke="none" stroke-width="1" stroke-linecap="butt" font-family="sans-serif"
+                       font-weight="normal" font-size="12" text-anchor="start"/>
+                </g>
+            </g>
+            <path d="M177.31917,135.92917c-0.02283,-2.22749 2.2102,-4.30964 4.43305,-4.32223c3.90328,-0.02211 102.05215,-0.00678 116.71738,-0.00155c2.00542,0.00045 4.21143,2.24023 4.21143,4.54543c0,4.22795 0,136.13589 0,143.5983c0,1.95182 -2.11347,4.32223 -4.43305,4.32223c-7.95247,0 -102.68437,0 -116.71742,0c-2.04897,0 -4.19343,-2.32752 -4.18734,-4.54278c0,0 0.06264,-135.14251 -0.02405,-143.5994z"
+                  fill="none" stroke="#e6e6e6" stroke-width="3" stroke-linecap="butt"/>
+            <g fill="none" stroke="#15bd54">
+                <g stroke-width="10" stroke-linecap="butt">
+                    <path d="M285.12649,230.82083c-7.6569,0 -16.67343,0 -16.67343,0v-14.61339l1.61572,-2.26201l-1.61572,-2.0466v-14.8288c0,0 9.0165,0 16.67343,0c2.15894,0 4.15152,2.09828 4.15152,4.08421c0,4.00169 0,18.60272 0,25.71701c0,2.40121 -1.99258,3.94955 -4.15152,3.94955z"
+                          data-paper-data="{&quot;index&quot;:null}"/>
+                    <path d="M211.63501,230.82083v-14.63805l1.61575,-2.23735l-1.61575,-2.0713v-14.8041h56.90953v14.8288l1.61575,2.0466l-1.61575,2.26201v14.61339z"/>
+                    <path d="M227.43802,183.32367c2.92151,0 3.80498,0.88347 3.80498,3.80498v5.10425c0,2.92151 -0.88347,3.80498 -3.80498,3.80498h-32.79476c-2.92151,0 -3.80498,-0.88347 -3.80498,-3.80498v-5.10425c0,-2.92151 0.88347,-3.80498 3.80498,-3.80498z"
+                          data-paper-data="{&quot;index&quot;:null}"/>
+                    <path d="M190.72201,226.87124c0,-7.11426 0,-21.71528 0,-25.71701c0,-1.98593 1.99258,-4.08421 4.15152,-4.08421c7.65693,0 16.67343,0 16.67343,0v14.8288l1.61575,2.0466l-1.61575,2.26201v14.61339c0,0 -9.01653,0 -16.67343,0c-2.15894,0 -4.15152,-1.54834 -4.15152,-3.94955z"/>
+                </g>
+                <g stroke-width="13" stroke-linecap="round">
+                    <path d="M273.4811,182.99156h11.58961"/>
+                    <path d="M279.2759,177.19675v11.58961" data-paper-data="{&quot;index&quot;:null}"/>
+                </g>
+            </g>
+            <g stroke="#ffffff">
+                <path d="M285.12649,230.82083c-7.6569,0 -16.67343,0 -16.67343,0v-14.61339l1.61572,-2.26201l-1.61572,-2.0466v-14.8288c0,0 9.0165,0 16.67343,0c2.15894,0 4.15152,2.09828 4.15152,4.08421c0,4.00169 0,18.60272 0,25.71701c0,2.40121 -1.99258,3.94955 -4.15152,3.94955z"
+                      data-paper-data="{&quot;index&quot;:null}" fill="#ffd504" stroke-width="2" stroke-linecap="butt"/>
+                <path d="M211.63501,230.82083v-14.63805l1.61575,-2.23735l-1.61575,-2.0713v-14.8041h56.90953v14.8288l1.61575,2.0466l-1.61575,2.26201v14.61339z"
+                      fill="#15bc8c" stroke-width="2" stroke-linecap="butt"/>
+                <path d="M190.72201,226.87124c0,-7.11426 0,-21.71528 0,-25.71701c0,-1.98593 1.99258,-4.08421 4.15152,-4.08421c7.65693,0 16.67343,0 16.67343,0v14.8288l1.61575,2.0466l-1.61575,2.26201v14.61339c0,0 -9.01653,0 -16.67343,0c-2.15894,0 -4.15152,-1.54834 -4.15152,-3.94955z"
+                      fill="#ffd504" stroke-width="2" stroke-linecap="butt"/>
+                <path d="M227.43802,184.32367c2.92151,0 3.80498,0.88347 3.80498,3.80498v5.10425c0,2.92151 -0.88347,3.80498 -3.80498,3.80498h-32.79476c-2.92151,0 -3.80498,-0.88347 -3.80498,-3.80498v-5.10425c0,-2.92151 0.88347,-3.80498 3.80498,-3.80498z"
+                      fill="#ececec" stroke-width="2" stroke-linecap="butt"/>
+                <g fill="none" stroke-width="5" stroke-linecap="round">
+                    <path d="M273.4811,182.99156h11.58961"/>
+                    <path d="M279.2759,177.19675v11.58961" data-paper-data="{&quot;index&quot;:null}"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,145 @@
+.popup{
+    width: 60vw;
+    height: 60vh;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 5px solid #e6e6e6;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.popupWrapper{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #4d97ffe6;
+    z-index: 1000000000000;
+}
+
+.popupBanner{
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    height: 7.5vh;
+    width: 100%;
+    text-align: center;
+    background: #4d97ff;
+    color: #ffffff;
+    line-height: 7.5vh;
+    font-size: 40px;
+}
+
+.popupButton{
+    display: inline-block;
+    /*position: absolute;*/
+    width: 6.5vh;
+    height: 6.5vh;
+    /*top: 50%;*/
+    /*right: calc(7.5vh / 2);*/
+    /*transform: translate(50%, -50%);*/
+    border-radius: 6.5vh;
+    line-height: 6.5vh;
+    background: #4588e6 var(--button-icon) no-repeat center;
+    background-size: 40%;
+    transition: background-color 0.5s;
+    margin-left: 0.5vh;
+    border: none;
+}
+
+.popupButton:hover{
+    background: #498ff2 var(--button-icon) no-repeat center;
+    background-size: 40%;
+    cursor: pointer;
+}
+
+.popupMenubar{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 0.5vh;
+    transform: translate(0, -50%);
+    height: 6.5vh;
+    font-size: 16px;
+}
+
+.popupContent{
+    width: 100%;
+    height: calc(100% - 7.5vh);
+    display: inline-block;
+    overflow: scroll;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.popupInputsContent{
+    display: grid;
+    grid: min-content / min-content auto;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+    height: min-content;
+    width: max-content;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.popupInputsWrapper{
+    width: 100%;
+    overflow: scroll;
+}
+
+.popupGridInput{
+    grid-column: 2
+}
+
+.popupInputTitle{
+    grid-column: 1;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.popupLowerButtonsHolder{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+}
+
+.popupFullyCenteredContent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.popupGreyBG{
+    background-color: #f2f2f2;
+    box-sizing: border-box;
+    border: 3px solid #e6e6e6;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.popupInfoSection{
+    background-color: #f2f2f2;
+    width: calc(100% - 20px);
+    max-height: calc(100% - 164px);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: #e6e6e6 3px solid;
+    box-sizing: border-box;
+    overflow: scroll;
+}
