@@ -189,6 +189,7 @@
              codeList.shift()
              codeList.forEach((i) => {
                  const isBf = ['>', '<', '+', '-', '.', ',', '[', ']'].includes(i)
+                 console.log(projectInfo.projectData.scripts[i], i)
                  wrapper.insertAdjacentHTML('beforeend', `<span class="block" blockType="${(isBf) ? 'BF' : projectInfo.projectData.scripts[i].loc}" blockcode="${i}" style="--block-color:${(isBf) ? blockInfo[i][0] : ((projectInfo.projectData.scripts[i].loc === 'projectData.custom') ? '#ff6680' : get(projectInfo, projectInfo.projectData.scripts[i].loc).color)};"><span class="blockTop"></span><span class="blockBottom"></span><span class="innerBlock"><span class="centered"><span class="blockSymbol">${(isBf) ? i : projectInfo.projectData.scripts[i].icon}</span><br>${(isBf) ? blockInfo[i][1] : projectInfo.projectData.scripts[i].name}</span></span><span class="snapPoint"></span></span>`)
              })
              if(editing==="projectData.main") wrapper.insertAdjacentHTML('beforeend', '<span class="end"><span class="blockTop" style="border-width: 0 0 0 1px; height: calc(50% - 7px);"></span><span class="blockBottom" style="border-width: 0 0 0 1px; height: calc(50% - 7px);"></span><img width="20" src="icons/script/Script_end.svg">End</span>');
@@ -229,7 +230,7 @@
             let extensionBlocks = ""
             projectInfo.projectData.extensions[ti].scripts.forEach((i)=>{
                 extensionBlocks += `
-                <button class="treeItem" onclick="editing = 'projectData.scripts.${i}' renderScript('${projectInfo.projectData.scripts[i].name}', '${projectInfo.projectData.scripts[i].code}');">
+                <button class="treeItem" onclick="editing = 'projectData.scripts.${i}'; renderScript('${projectInfo.projectData.scripts[i].name}', '${projectInfo.projectData.scripts[i].code}');">
                     <div class="treeIcon"><img alt="" src="icons/Code_normal.svg" width="30"></div>
                     <span class="treeBottomLevel">${projectInfo.projectData.scripts[i].name}</span>
                 </button>
@@ -1113,7 +1114,7 @@
 
     function loadPremadeExtension(ex) {
         let code
-        if (ex === "HW") code = {"color":"#c366ff","name":"Hello world!","scripts":[{"icon":"`","name":"Hello world!","code":"‡+‡+‡+‡+‡+‡+‡+‡+‡[‡>‡+‡+‡+‡+‡[‡>‡+‡+‡>‡+‡+‡+‡>‡+‡+‡+‡>‡+‡<‡<‡<‡<‡-‡]‡>‡+‡>‡+‡>‡-‡>‡>‡+‡[‡<‡]‡<‡-‡]‡>‡>‡.‡>‡-‡-‡-‡.‡+‡+‡+‡+‡+‡+‡+‡.‡.‡+‡+‡+‡.‡>‡>‡.‡<‡-‡.‡<‡.‡+‡+‡+‡.‡-‡-‡-‡-‡-‡-‡.‡-‡-‡-‡-‡-‡-‡-‡-‡.‡>‡>‡+‡."},{"icon":"+","name":"Add cells","code":"‡[‡-‡<‡+‡>‡]"},{"icon":"-","name":"Subtract cells","code":"‡[‡-‡<‡-‡>‡‡]"}]};
+        if (ex === "HW") code = {"color":"#c366ff","name":"Hello world!","scripts":[{"icon":"`","name":"Hello world!","code":"‡+‡+‡+‡+‡+‡+‡+‡+‡[‡>‡+‡+‡+‡+‡[‡>‡+‡+‡>‡+‡+‡+‡>‡+‡+‡+‡>‡+‡<‡<‡<‡<‡-‡]‡>‡+‡>‡+‡>‡-‡>‡>‡+‡[‡<‡]‡<‡-‡]‡>‡>‡.‡>‡-‡-‡-‡.‡+‡+‡+‡+‡+‡+‡+‡.‡.‡+‡+‡+‡.‡>‡>‡.‡<‡-‡.‡<‡.‡+‡+‡+‡.‡-‡-‡-‡-‡-‡-‡.‡-‡-‡-‡-‡-‡-‡-‡-‡.‡>‡>‡+‡."},{"icon":"+","name":"Add cells","code":"‡[‡-‡<‡+‡>‡]"},{"icon":"-","name":"Subtract cells","code":"‡[‡-‡<‡-‡>‡]"}]};
         else if (ex === "copy") code = {"color":"#6163f0","name":"Copy blocks","scripts":[{"icon":"(","name":"Copy cell left","code":"‡[‡-‡<‡+‡<‡+‡>‡>‡]‡<‡<‡[‡-‡>‡>‡+‡<‡<‡]‡>"},{"icon":")","name":"Copy cell right","code":"‡[‡-‡>‡+‡>‡+‡<‡<‡]‡>‡>‡[‡-‡<‡<‡+‡>‡>‡]‡<"}]};
         else if (ex === "clear") code = {"color":"#fff353","name":"Clear cells","scripts":[{"icon":"v","name":"Clear down","code":"‡[‡-‡]"},{"icon":"^","name":"Clear up","code":"‡[‡+‡]"}]};
         let loadedEx = createExtension(code.name, code.color)
