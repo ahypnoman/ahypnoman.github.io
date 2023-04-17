@@ -34,7 +34,7 @@ let tech = {
                 "canvas": 5,
             },
             "capacity": "0 tons",
-            "image": "images/ManOfWar.jpeg",
+            "image": "LSimages/ManOfWar.jpeg",
             "alt": "Image of a Man Of War warship",
             "efficiency": "N/A"
         }
@@ -63,7 +63,7 @@ let tech = {
                 "canvas": 1,
             },
             "capacity": "1000 tons",
-            "image": "images/Sailboat.webp",
+            "image": "LSimages/Sailboat.webp",
             "alt": "Image of a sailing ship",
             "efficiency": "N/A"
         }
@@ -91,7 +91,7 @@ let tech = {
                 "timber": 2,
             },
             "capacity": "20 tons",
-            "image": "images/Wagon.jpeg",
+            "image": "LSimages/Wagon.jpeg",
             "alt": "Image of a wagon",
             "efficiency": "N/A"
         },
@@ -117,7 +117,7 @@ let tech = {
                 "water": 40000
             },
             "capacity": "20 tons",
-            "image": "images/Train.jpeg",
+            "image": "LSimages/Train.jpeg",
             "alt": "Image of a train",
             "efficiency": "N/A"
         },
@@ -136,7 +136,7 @@ let tech = {
             },
             "upkeepJSON": {"pricetag":0},
             "capacity": "20 tons",
-            "image": "images/rail.jpeg",
+            "image": "LSimages/rail.jpeg",
             "alt": "Image of a railway",
             "efficiency": "N/A",
             "crew": ["", "N/A"],
@@ -156,7 +156,7 @@ let tech = {
             },
             "upkeepJSON": {},
             "capacity": "20 tons",
-            "image": "images/railbridge.jpeg",
+            "image": "LSimages/railbridge.jpeg",
             "alt": "Image of a railway bridge",
             "efficiency": "N/A"
         }
@@ -183,7 +183,7 @@ let tech = {
                 "timber": 1,
             },
             "capacity": "N/A",
-            "image": "images/Loom.jpeg",
+            "image": "LSimages/Loom.jpeg",
             "alt": "Image of a loom",
             "efficiency": "N/A"
         },
@@ -209,7 +209,7 @@ let tech = {
                 "timber": 2
             },
             "capacity": "N/A",
-            "image": "images/WaterMill.jpeg",
+            "image": "LSimages/WaterMill.jpeg",
             "alt": "Image of a Water Mill",
             "efficiency": "N/A"
         },
@@ -235,7 +235,7 @@ let tech = {
                 "timber": 2
             },
             "capacity": "N/A",
-            "image": "images/Forge.jpeg",
+            "image": "LSimages/Forge.jpeg",
             "alt": "Image of a Forge",
             "efficiency": 0.2
         },
@@ -260,7 +260,7 @@ let tech = {
                 "timber": 1
             },
             "capacity": "N/A",
-            "image": "images/Plough.jpeg",
+            "image": "LSimages/Plough.jpeg",
             "alt": "Image of a Plough",
             "efficiency": 0.5
         },
@@ -282,7 +282,7 @@ let tech = {
                 "metal": 0.1,
             },
             "capacity": "N/A",
-            "image": "images/Dynamite.jpeg",
+            "image": "LSimages/Dynamite.jpeg",
             "alt": "Image of Dynamite",
             "efficiency": "N/A"
         }
@@ -308,7 +308,7 @@ let tech = {
                 "fuel": 0.01
             },
             "capacity": "N/A",
-            "image": "images/Musket.jpg",
+            "image": "LSimages/Musket.jpg",
             "alt": "Image of a Musket",
             "efficiency": "N/A"
         },
@@ -332,7 +332,7 @@ let tech = {
                 "fuel": 0.005
             },
             "capacity": "N/A",
-            "image": "images/Flintlock.jpeg",
+            "image": "LSimages/Flintlock.jpeg",
             "alt": "Image of an old pistol",
             "efficiency": "N/A"
         },
@@ -356,7 +356,7 @@ let tech = {
                 "fuel": 0.0005
             },
             "capacity": "N/A",
-            "image": "images/Sword.jpeg",
+            "image": "LSimages/Sword.jpeg",
             "alt": "Image of a sabre",
             "efficiency": "N/A"
         },
@@ -383,7 +383,7 @@ let tech = {
                 "capacity": ["", "N/A"]
             },
             "capacity": "N/A",
-            "image": "images/Cannon.jpeg",
+            "image": "LSimages/Cannon.jpeg",
             "alt": "Image of a cannon",
             "efficiency": "N/A"
         }

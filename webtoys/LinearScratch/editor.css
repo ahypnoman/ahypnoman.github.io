@@ -1074,7 +1074,7 @@ div:not(.playerIdentifier) .viewSideBar:after{
     display: block;
     width: calc(min(30vw, 300px) - 26px);
     height: 53px;
-    background-image: url("images/LS_logo.svg");
+    background-image: url("LSimages/LS_logo.svg");
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: contain;
