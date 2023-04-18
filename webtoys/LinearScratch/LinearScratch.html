@@ -466,7 +466,9 @@
 
     function createScript(loc, name, symbol, code){
         const id = '_' + genRandomString()
+        console.log(loc)
         get(projectInfo, loc + '.scripts').push(id)
+        console.log("create with id",id)
         projectInfo.projectData.scripts[id] = {icon: symbol.replace(/(\r\n|\n|\r)/gm, ""), name: name.replace(/(\r\n|\n|\r)/gm, ""), code: code?code.replace(/(\r\n|\n|\r)/gm, ""):"", loc: loc}
         editing = 'projectData.scripts.' + id
         renderScript(name,'')
