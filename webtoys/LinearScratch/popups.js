@@ -441,10 +441,8 @@ const popups = {
                     }
                     else {
                         let ex = createExtension(JSON.parse(text).name, JSON.parse(text).color)
-                        let id
                         JSON.parse(text).scripts.forEach((i)=>{
-                            id = createScript("projectData.extensions." + ex,i.name,i.icon,i.code)
-                            projectInfo.projectData.extensions[ex].scripts.push(id)
+                            createScript("projectData.extensions." + ex,i.name,i.icon,i.code)
                         })
                     }
                 } catch(error){
@@ -489,7 +487,7 @@ const popups = {
                         else {
                             let ex = createExtension(JSON.parse(text).name, JSON.parse(text).color)
                             JSON.parse(text).scripts.forEach((i)=>{
-                                projectInfo.projectData.extensions[ex].scripts.push(createScript("projectData.extensions." + ex,i.name,i.icon,i.code))
+                                createScript("projectData.extensions." + ex,i.name,i.icon,i.code)
                             })
                         }
                     } catch(error) {if(text.split("⁄").length>2){
