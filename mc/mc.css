@@ -220,6 +220,10 @@ a {
     font-family: "Noto Sans", sans-serif;
 }
 
+.footer h2 {
+    font-family: "Noto Sans", sans-serif;
+}
+
 .pageNavContainer div {
     padding-left: 10px;
     overflow: hidden;
