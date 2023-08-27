@@ -255,8 +255,13 @@ a {
     .footer {
         flex-direction: column;
     }
-    .footer div:nth-child(1) {
+
+    .footer > div {
         width: 100%;
         text-align: center;
+    }
+
+    .footer > div:nth-child(2) {
+        margin-top: 20px;
     }
 }
