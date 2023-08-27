@@ -249,7 +249,7 @@ body{
     font-size: 50px;
 }
 
-.centered{
+.pageContainer{
     text-align: center;
     pointer-events: none;
     z-index: 1000002;

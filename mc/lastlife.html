@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Last Life Addon</title>
+    <link href="mc.css" rel="stylesheet">
+</head>
+<body>
+<h1>LAST LIFE ADDON</h1>
+<div class="space"></div>
+
+<div class="pageContainer">
+    <div class="sideBar">
+        <div class="imgContainer"><img src="pack_icon.png"></div>
+        <div class="pageNavContainer">
+            <div><a href="#download">Download</a></div>
+            <div><a href="#meta">Meta</a></div>
+            <div><a href="#info">Info</a></div>
+            <div><a href="#docs">Docs</a></div>
+            <div><a class="indented" href="#docs-howToPlay">How to play</a></div>
+            <div><a class="indented" href="#docs-objectives">Objectives</a></div>
+            <div><a class="indented" href="#docs-generalCommands">General commands</a></div>
+            <div><a class="indented" href="#docs-adminCommands">Admin commands</a></div>
+            <div><a class="indented" href="#docs-options">"@Options" commands</a></div>
+            <div><a class="indented" href="#docs-adminInfo">Admin instructions</a></div>
+            <div><a href="#footer">Footer</a></div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="row" id="download">
+            <div class="buttonContainer">
+                <div class="imageAndButtonContainer"><img src="pack_icon.png" width="50">
+                    <div class="downloadContainer">
+                        <a download href="https://github.com/ahypnoman/Last-Life-Addon/raw/main/Last%20Life.mcaddon">
+                            <div class="buttonContent">Download</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row"><h2 id="meta">Meta</h2>
+            <p class="metaInfo">47KB • <a href="https://github.com/ahypnoman/Last-Life-Addon/blob/main/LICENSE">GNU
+                GPLv3 licence</a></p></div>
+        <div class="row"><h2 id="info">Info</h2>
+            <p>A configurable addon for Minecraft Bedrock that emulates the mod from Last Life</p></div>
+        <div class="row"><h2 id="docs">Docs</h2>
+            <div class="docsContainerContainer"><span id="docs-howToPlay">How to play:</span>
+                <div class="docsContainer">
+                    <div>
+                        <ol>
+                            <li>A world operator runs the @session command</li>
+                            <li>After a minute all players are randomly assigned an amount of lives* (default range is
+                                2-6)
+                            </li>
+                            <li>After five minutes a random player is selected as the "Boogeyman". Their objective is to
+                                kill another player to be "cured"
+                            </li>
+                        </ol>
+                        <small>*Lives are only assigned in the first session. There is a setting to grant a life to a
+                            random player every session (see <a href="#docs-options">"randomlifemode"</a>).</small>
+                    </div>
+                </div>
+            </div>
+            <div class="docsContainerContainer"><span id="docs-objectives">Objectives:</span>
+                <div class="docsContainer">
+                    <div>
+                        <b><span style="color: #55FF55">Green</span> and <span style="color: #FFFF55">yellow</span>
+                            objective:</b>
+                        <br>Survive.
+                        <br><br><b><span style="color: #FF5555">Red</span> objective:</b>
+                        <br>Survive. Can also kill other players.
+                        <br><br><b><span style="color: #FF5555">Bogeyman</span> objective:</b>
+                        <br>Kill another player
+                    </div>
+                </div>
+            </div>
+            <div class="docsContainerContainer"><span id="docs-generalCommands">General commands:</span>
+                <div class="docsContainer">
+                    <div>
+                        <div class="infoContainer">These commands are prefixed by "@", not "/". Commands are
+                            case-sensitive, including usernames.
+                        </div>
+                        <br>@help - Provides a shortened version of this text in chat.
+                        <br>@lives - Provides a list of players and how many lives they have.
+                        <br>@givelife &#60;username&#62; - Transfers a life from the caller to a specified player.
+                        <br>@sessionlogs &#60;session number?&#62; - The logs for a specified session. If item is not
+                        provided it return a list of available logs.
+                        <br>@info - Explains the Boogeyman's objective. Can only be run by the current Boogeyman.
+                    </div>
+                </div>
+            </div>
+            <div class="docsContainerContainer"><span id="docs-adminCommands">Admin commands:</span>
+                <div class="docsContainer">
+                    <div>
+                        <div class="infoContainer">These commands are prefixed by "@", not "/". Commands are
+                            case-sensitive, including usernames. Only world operators can use these commands.
+                        </div>
+                        <br>@boogeyman &#60;username?&#62; - Starts the game. Specifying a username will set that player
+                        as a Boogeyman*.
+                        <br>@options &#60;help | ...&#62; - Allows game rules to be set. Use "@options help" or see "<a
+                            href="#docs-options">@options commands"</a> for a list of options.
+                        <br>@cure &#60;code? | no reward?&#62; - Cures the Boogeyman. Optional validation code. Optional
+                        "no reward" toggle (use an asterisk if true).
+                        <br>@session - starts a new session.
+                        <br><small>*Command to be used as a fallback if existing boogeyman leaves the game and for
+                        testing</small>
+                    </div>
+                </div>
+            </div>
+            <div class="docsContainerContainer"><span id="docs-options">@options commands:</span>
+                <div class="docsContainer">
+                    <div>
+                        <div class="infoContainer">These commands are prefixed by "@options ", not "/". Commands are
+                            case-sensitive, including usernames. Only world operators can use these commands.
+                        </div>
+                        <br>@options help - Provides list of options commands.
+                        <br>@options player &#60;username&#62; lives get - Provides the lives of the specified player.
+                        <br>@options player &#60;username&#62; lives set &#60;quantity?&#62; - Sets the life count of
+                        the specified player.
+                        <br>@options bmmode get - Provides the current Boogeyman objective.
+                        <br>@options bmmode set &#60;reward | punish | combined&#62; - sets the current Boogeyman
+                        objective.
+                        <br>@options revivemode get - Provides the status of the revivemode gamerule.
+                        <br>@options revivemode set &#60;true | false&#62; - Provides the status of the revivemode
+                        gamerule.
+                        <br>@options randomlifemode get - Provides the status of the randomlifemode gamerule.
+                        <br>@options randomlifemode set &#60;true | false&#62; - Provides the status of the
+                        randomlifemode gamerule.
+                        <br>@options session get - Provides the current session number.
+                        <br>@options session set &#60;integer&#62; - Sets the current session number*.
+                        <br>@options liferange get - Gets the random life selection range.
+                        <br>@options liferange set &#60;min | max&#62; - Sets the random life range*.
+                        <br><small>*Setting to 0 and using the @session command will restart the game (it will not clear logs)</small>
+                    </div>
+                </div>
+            </div>
+            <div class="docsContainerContainer"><span id="docs-adminInfo">Admin instructions:</span>
+                <div class="docsContainer">
+                    <div>
+                        <ul>
+                            <li>The game is divided into "sessions" that can be started by an admin using the "@session
+                                command". See <a href="#docs-howToPlay">"How to play"</a> for information on sessions.
+                            </li>
+                            <li>Some rules (such as the Boogeyman not being able to kill red names) must be enforced by
+                                an admin, like in the Last Life series.
+                            </li>
+                            <li>The "bmmode" option determines the Boogeyman's reward/punishment for killing another
+                                player. It can be toggled between 3 modes: "reward" grants the Boogeyman a life when
+                                they kill another player, "punish" (default) sets the Boogeyman to their last life if
+                                they fail to kill another player, and "combined" is a combination of both other modes.
+                            </li>
+                            <li>The "randomlifemode" option determines whether a random player gains a life when the
+                                next session starts. If is set to "true" a random player will gain a life every session.
+                                If it is set to "false" (default) lives cannot be created without admin intervention.
+                            </li>
+                            <li>The "revivemode" option determines whether players can revive each other using the
+                                "@givelife" command. "false" is default.
+                            </li>
+                            <li>The "liferange" option determines the range within which lives are randomly chosen at
+                                the start of the game and for any players that join later,
+                            </li>
+                            <li>Sessions must be started manually.</li>
+                            <li>Boogeyman trap kills are not recorded automatically. If someone claims to have trapped
+                                somebody as Boogeyman you can ask them for a validation code then run the command "@cure
+                                &#60;code&#62;" to cure them/validate that they are a Boogeyman (This does not validate
+                                that they actually trapped them, however).
+                            </li>
+                            <li>If an admin wishes to cure the Boogeyman manually without a code the command "@cure *"
+                                is recommended as it will not reward the Boogeyman in "reward" or "combined" mode but
+                                will remove their status as Boogeyman.
+                            </li>
+                            <li>Referring players to this site is recommended to explain rules and commands.
+                            </li>
+                            <li>Session logs seen in the "@sessionlogs" command cannot be cleared and can be read by any
+                                player to prevent admin abuse. Don't cheat.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h2>Source</h2>
+            <a href="https://github.com/ahypnoman/Last-Life-Addon">Github repo</a>
+        </div>
+        <div class="footer" id="footer">
+            <div><h2>Created by AHypnoman</h2>
+                <a href="https://scratch.mit.edu/users/AHypnoman">Scratch</a> | <a href="https://github.com/ahypnoman">GitHub</a>
+                | <a href="https://ahypnoman.github.io">site</a>
+            </div>
+            <div>
+                <h2>Credits</h2>
+                <div><a href="https://www.youtube.com/@Grian">Grian (Youtube)</a> - Inspiration (Last Life series)</div>
+                <div><a href="https://learn.microsoft.com/en-us/minecraft/creator/">Bedrock creator docs</a> - API
+                    documentation
+                </div>
+                <div><a href="https://bridge-core.app">Bridge - IDE</a></div>
+                <div><span style="font-family: 'Noto Sans', sans-serif">Me</span> - all code</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
