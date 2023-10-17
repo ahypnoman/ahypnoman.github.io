@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javaScratch</title>
+    <style>
+        * {
+            --gradient: linear-gradient(330deg, #ffffff 0%, rgba(245, 243, 244, 0.92) 0%, rgba(237, 231, 232, 0.83) 11.83%, rgba(231, 219, 220, 0.75) 17.75%, rgba(227, 206, 208, 0.67) 23.67%, rgba(225, 192, 195, 0.58) 29.58%, rgba(225, 177, 182, 0.5) 35.5%, rgba(228, 161, 167, 0.42) 41.42%, rgba(231, 144, 150, 0.33) 47.33%, rgba(236, 124, 131, 0.25) 53.25%, rgba(242, 101, 108, 0.17) 59.17%, rgba(255, 0, 0, 0) 71%), linear-gradient(136deg, #4964da 0%, rgba(146, 73, 221, 0.8) 11.8%, rgba(176, 60, 196, 0.6) 23.6%, rgba(192, 55, 173, 0.4) 35.4%, rgba(217, 46, 116, 0) 59%), radial-gradient(100% 100% at 10% 100%, #fdd575 0%, #fcc06a 14.29%, #fbaa63 28.57%, #f99262 42.86%, #f77868 57.14%, #f55973 71.43%, #d22e8c 100%);
+            --theme-function: #d00308;
+            --theme-def: #50459d;
+            --theme-global: #da7c00;
+            --theme-string: #24960b;
+            --good-banner: #dcffd1;
+            --warn-banner: #ffead1;
+            --error-banner: #ffd6d1;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Helvetica", sans-serif;
+            background: #f6f8fa;
+        }
+
+        td, th {
+            padding: 8px;
+            border: 1px solid #000000;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        h1 {
+            text-decoration: underline;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: #ffffff80 0 0 4px;
+            font-family: "Andale Mono", monospace;
+        }
+
+        h2 {
+            margin: 8px 0 0;
+            color: #ffffff;
+            text-shadow: #ffffff80 0 0 4px;
+            font-size: 20px;
+            font-weight: normal;
+            font-family: "Andale Mono", monospace;
+        }
+
+        h3 {
+            margin: 0 0 8px 0;
+            /*text-shadow: 0 0 1px #000000;*/
+            width: max-content;
+            display: inline-block;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        label:has(input[type="radio"]) {
+            padding: 8px;
+            margin-right: 4px;
+            position: relative;
+            cursor: pointer;
+            font-family: "Andale Mono", monospace;
+        }
+
+        label:has(input[type="radio"]):after, label:has(input[type="radio"]):before {
+            display: block;
+            height: 5px;
+            content: "";
+            background: center/200% var(--gradient);
+            transform: translate(0, 1px);
+            transform-origin: bottom;
+            clip-path: inset(0 50% 0 50%);
+            transition: clip-path 100ms ease-in-out;
+            border-radius: 2px;
+            position: absolute;
+            bottom: 0;
+            left: 7px;
+            width: calc(100% - 14px);
+        }
+
+        label:has(input[type="radio"]):before {
+            width: 10px;
+            left: 50%;
+            transform: translate(-50%, 1px);
+        }
+
+        label:has(input[type="radio"]):hover:before {
+            clip-path: inset(0 0 0 0);
+        }
+
+        label:has(input[type="radio"]:checked):after {
+            clip-path: inset(0 0 0 0);
+        }
+
+        .docsSidebarContent ul > li {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 0;
+        }
+
+        .docsContent li {
+            margin: 0 0 8px;
+        }
+
+        .docsSidebarContent li::marker {
+            content: none;
+        }
+
+        .docsSidebarContent li > button, .docsSidebarContent li > span {
+            display: block;
+            border-radius: 0;
+            border: none;
+            font: inherit;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            padding: 8px;
+            height: min-content;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .docsSidebarContent li > button {
+            font-family: "Andale Mono", monospace;
+        }
+
+        .docsSidebarContent li > span {
+            /*text-shadow: 0 0 1px #000000;*/
+            font-weight: bold;
+            cursor: text;
+        }
+
+        li:last-child {
+            margin: 0;
+        }
+
+        ul, ol {
+            margin: 8px 0 8px;
+        }
+
+        .docsSidebarContent ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tabContent {
+            transform-origin: top;
+            padding: 8px;
+            box-sizing: border-box;
+            width: 100%;
+            display: none;
+            height: 100%;
+            overflow: scroll;
+        }
+
+        .pageContainer:has(.tabs > label > input[type="radio"][data-tabId="about"]:checked) > .content > div.tabContent[data-tabId="about"], .pageContainer:has(.tabs > label > input[type="radio"][data-tabId="documentation"]:checked) > .content > div.tabContent[data-tabId="documentation"], .pageContainer:has(.tabs > label > input[type="radio"][data-tabId="install-help"]:checked) > .content > div.tabContent[data-tabId="install-help"] {
+            display: block;
+            transform-origin: bottom;
+        }
+
+        .pageContainer:has(.tabs > label > input[type="radio"][data-tabId="documentation"]:checked) > .tabs {
+            margin-top: 0;
+        }
+
+        body:has(.pageContainer > .tabs > label > input[type="radio"][data-tabId="documentation"]:checked) > .banner {
+            height: 0;
+        }
+
+        body:not(:has(.pageContainer > .tabs > label > input[type="radio"][data-tabId="documentation"]:checked)) > * > .content {
+            height: calc(68vh - 37px);
+        }
+
+        .pageContainer {
+            position: absolute;
+            left: 0;
+            height: 100vh;
+            overflow: scroll;
+            width: 100%;
+        }
+
+        .content {
+            background: #ffffff;
+            height: calc(92vh - 37px);
+            transition: height 250ms ease-in-out;
+        }
+
+        .banner {
+            position: fixed;
+            background-image: var(--gradient);
+            box-sizing: border-box;
+            height: 24vh;
+            width: 100%;
+            top: 0;
+            left: 0;
+            transition: height 250ms ease-in-out;
+            overflow: hidden;
+        }
+
+        .bannerInner {
+            padding: 8px;
+            display: inherit;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .tabs {
+            display: flex;
+            flex-direction: row;
+            overflow: visible;
+            padding: 0 8px;
+            background: #f6f8fa;
+            width: 100%;
+            border-bottom: #d8dee4 1px solid;
+            height: 36px;
+            box-sizing: border-box;
+            margin-top: 24vh;
+            transition: margin-top 250ms ease-in-out;
+        }
+
+        .copyWrapper, .searchWrapper {
+            display: flex;
+            flex-direction: row;
+            margin: 8px 0;
+            border-radius: 5px;
+            overflow: hidden;
+            width: max-content;
+            border: #d8dee4 1px solid;
+        }
+
+        .copyButton, .searchButton {
+            border-radius: 0;
+            border: none;
+            font: inherit;
+            padding: 16px;
+            background: #f6f8fa;
+            cursor: copy;
+            position: relative;
+            overflow: hidden;
+            width: 90px;
+        }
+
+        .copyButton:hover, .searchButton:hover, li > button:hover, .proceedButton:hover {
+            background: #e1e3e6;
+        }
+
+        .copyButton:active, .searchButton:active, li > button:active {
+            background: #c8cacc;
+        }
+
+        .copyContent, .searchInput {
+            border-radius: 0;
+            border: none;
+            font: inherit;
+            padding: 16px;
+            background: var(--gradient);
+            background-size: 200%;
+            position: relative;
+            color: #ffffff;
+            outline: none;
+        }
+
+        .copyContent {
+            font-family: "Andale Mono", monospace;
+        }
+
+        .searchInput::placeholder {
+            color: #a6a6a6;
+        }
+
+        .searchInput {
+            background: #ffffff;
+            color: #000000;
+            width: 196.5px;
+            /*text-shadow: none;*/
+        }
+
+        .searchButton {
+            cursor: pointer;
+        }
+
+        .searchWrapper {
+            margin: 0;
+        }
+
+        .searchWrapperWrapper {
+            position: relative;
+            margin: 0;
+            width: 321px;
+        }
+
+        .searchWrapperWrapper::before {
+            content: "";
+            clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+            width: calc(100% + 1.5px);
+            height: calc(100% + 2px);
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            background: #007bff;
+            pointer-events: none;
+            box-sizing: border-box;
+            border-radius: 5px;
+            transition: clip-path 100ms ease-in-out;
+        }
+
+        .searchWrapperWrapper:has(.searchWrapper > .searchInput:focus)::before {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .footer {
+            border-top: #d8dee4 1px solid;
+            background: #f6f8fa;
+            width: 100%;
+            padding: 16px;
+            height: 8vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .docsSidebar {
+            float: right;
+            padding: 8px 8px 0 0;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .docsSidebarContent {
+            margin-top: 8px;
+            border: #d8dee4 1px solid;
+            background: #f6f8fa;
+            border-radius: 5px;
+            width: 321px;
+            box-sizing: border-box;
+            overflow: scroll;
+            height: max-content;
+            max-height: calc(100% - 68px);
+        }
+
+        .docsContent {
+            height: 100%;
+            width: calc(100vw - 329px);
+            float: left;
+            overflow: scroll;
+            padding: 8px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .codeDemo {
+            background: #f6f8fa;
+            border: #d8dee4 1px solid;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 8px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .codeDemo:last-child {
+            margin: 8px 0 0;
+        }
+
+        .codeDemo h3 {
+            margin: 8px;
+            /*text-shadow: none;*/
+            font-weight: normal;
+        }
+
+        .codeDemoContainer, .codeDemoOutput {
+            background: #ffffff;
+            padding: 8px;
+            width: 100%;
+            overflow: scroll;
+            border-top: #d8dee4 1px solid;
+            color: #808080;
+            white-space: pre;
+            box-sizing: border-box;
+            font-family: "Andale Mono", monospace;
+        }
+
+        .codeDemoOutput:before {
+            content: "Output";
+            color: #bfbfbf;
+            display: block;
+            margin-bottom: 2ex;
+        }
+
+        .codeDemoOutput {
+            background: #ffffff;
+            padding: 8px;
+            width: 100%;
+            overflow: scroll;
+            border-top: #d8dee4 1px solid;
+            color: #bfbfbf;
+            box-sizing: border-box;
+        }
+
+        .codeSmall {
+            background: #f6f8fa;
+            border: #d8dee4 1px solid;
+            border-radius: 5px;
+            overflow: hidden;
+            padding: 1px;
+            box-sizing: border-box;
+            display: inline-flex;
+            font-family: "Andale Mono", monospace;
+        }
+
+        .docsBanner {
+            display: inline-block;
+            padding: 16px;
+            border: #00000040 1px solid;
+            box-sizing: border-box;
+            border-radius: 5px;
+            float: right;
+            margin: 0 0 8px 8px;
+            text-align: center;
+            width: 41.6vw;
+        }
+
+        .docsLink {
+            background: none;
+            padding: 0;
+            display: inline;
+            color: #2a70d7;
+            text-decoration: underline;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            font-size: inherit;
+            font-family: inherit;
+        }
+
+        .loader {
+            margin-top: 10px;
+            border: 1px solid #ffffff;
+            width: 200px;
+            height: 10px;
+        }
+
+        .copyUrl {
+            filter: brightness(0);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .proceedButton {
+            width: 50vw;
+            border: 1px solid #d8dee4;
+            border-radius: 5px;
+            background: #fff;
+            cursor: pointer;
+            padding: 16px;
+            font-family: inherit;
+            font-size: inherit;
+            display: block;
+            color: #000000;
+            text-decoration: none;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .fireFoxWarn {
+            display: block;
+        }
+
+        .fireFoxWarn:has(div) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="banner" style="height: 100vh; z-index: 1; display: flex; align-items: center; justify-content: center">
+    <div class="bannerInner"><h1>javaScratch</h1>
+        <h2>The best way to communicate with the Scratch API through Javascript</h2>
+        <div class="loader"></div>
+        <div class="fireFoxWarn">
+            <div class="codeDemo" style="margin-bottom: 8px; text-align: center; width: 50vw;"><h3>Warning:</h3>
+                <div class="codeDemoContainer"
+                     style='font-family: "Helvetica", sans-serif; text-align: left; white-space: normal; color: #000'>
+                    Your browser (Firefox) does not have a feature core to this website enabled by default. You can fix
+                    this if your using Firefox however: go to <a href="about:config">config</a> then search for and
+                    enable this preference: <span class="codeSmall">layout.css.has-selector.enabled</span>. Reload once
+                    it is turned on. (I would also recommend using Chrome to access this site if you have it)
+                </div>
+            </div>
+            <button class="proceedButton">Reload</button>
+        </div>
+    </div>
+</div>
+<div class="pageContainer">
+    <div class="tabs" id="tabs">
+        <label><input checked data-tabId="about" name="tab" type="radio">About</label>
+        <label><input data-tabId="documentation" name="tab" type="radio">Docs</label>
+        <label><input data-tabId="install-help" name="tab" type="radio">Install</label>
+    </div>
+    <div class="content">
+        <div class="tabContent" data-tabId="about">
+            javaScratch is a Node.js Javascript module for interacting with the Scratch API. It includes all important
+            API features, such as cloud connections, editing projects, and getting user messages.<br><br>
+
+            javaScratch requires an account to run, and necessitates that a username and password are provided. The
+            username and password are only sent to Scratch via secure methods and are never sent to any other site. (You
+            can validate this yourself on the <a href="https://github.com/ahypnoman/javaScratch">public github repo</a>)<br><br>
+
+            Note that javaScratch does not allow you to create new accounts, post a "view" to projects, or interact with
+            the forums. This is to prevent malicious usage and abuse of the Scratch API.
+        </div>
+        <div class="tabContent" data-tabId="documentation" style="padding: 0">
+            <div class="docsContent"></div>
+            <div class="docsSidebar">
+                <div class="searchWrapperWrapper">
+                    <div class="searchWrapper">
+                        <button class="searchButton">Search</button>
+                        <input class="searchInput" placeholder="Search docs"></div>
+                </div>
+                <div class="docsSidebarContent">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+        <div class="tabContent" data-tabId="install-help">
+            Paste this code into your terminal to install the javaScratch module.
+            <div class="copyWrapper">
+                <button class="copyButton" onclick="copy(this.nextElementSibling.textContent)">Copy</button>
+                <div class="copyContent">npm i https://github.com/ahypnoman/javaScratch</div>
+            </div>
+            Paste this code into your script to import the Session function.
+            <div class="copyWrapper">
+                <button class="copyButton" onclick="copy(this.nextElementSibling.textContent)">Copy</button>
+                <div class="copyContent">const Session = require("javascratch").Session</div>
+            </div>
+            <small>(The fact these are the same size is entirely a coincidence :P)</small>
+        </div>
+    </div>
+    <div class="footer">
+        javaScratch is not affiliated with Scratch, the Scratch Team, or the Scratch Foundation. <br>
+        <span><a href=".">Site home</a> • <a href="https://scratch.mit.edu/users/AHypnoman">Scratch profile</a></span>
+    </div>
+</div>
+<script>
+
+    if (window.getComputedStyle(document.getElementsByClassName("fireFoxWarn")[0]).display === "block") {
+        document.getElementsByClassName("loader")[0].remove()
+        document.getElementsByClassName("proceedButton")[0].addEventListener("click", () => {
+            window.location.reload()
+        })
+    } else {
+        renderPage()
+    }
+    let documentation = "";
+
+    async function renderPage() {
+        document.addEventListener("loadingFinished", () => {
+            //Sorry:
+            eval(textJs)
+            document.head.insertAdjacentHTML("beforeend", "<style>body * {transition: none !important;}</style>")
+            requestAnimationFrame(() => {
+                renderDocsSidebar(document.querySelector(`.tabContent[data-tabId='documentation']`), documentation)
+                const urlParams = new URLSearchParams(window.location.search)
+                if (urlParams.get("tab") !== "documentation") {
+                    urlParams.delete("docsPage")
+                    window.history.pushState({}, '', window.location.pathname + '?' + urlParams);
+                }
+                const tab = document.querySelectorAll(`[data-tabId="${urlParams.get("tab")}"]`)[0]
+                if (tab) {
+                    document.querySelectorAll(`[data-tabId="about"]`)[0].checked = false
+                    tab.checked = true
+                }
+                renderDocs(document.querySelector(`.tabContent[data-tabId='documentation']`), documentation, urlParams.get("docsPage") || 'javaScratch docs');
+                [...document.getElementsByClassName("tabs")[0].children].forEach(i => {
+                    if (!navigator.userAgent.includes("Firefox"))
+                        i.addEventListener("change", () => {
+                            urlParams.set("tab", document.querySelector('input[name="tab"]:checked').getAttribute("data-tabId"))
+                            window.history.pushState({}, '', window.location.pathname + '?' + urlParams);
+                        })
+                })
+                if (navigator.userAgent.indexOf("Firefox") !== -1) [...document.getElementsByTagName("label")].forEach(x => x.addEventListener("click", (ev) => {
+                    if (ev.target.tagName === "LABEL") {
+                        urlParams.set("tab", x.firstChild.getAttribute("data-tabId"))
+                        window.history.pushState({}, '', window.location.pathname + '?' + urlParams);
+                        window.location.reload()
+                    }
+                }))
+                document.querySelectorAll(`.searchInput`)[0].addEventListener("input", () => {
+                    renderDocsSidebar(document.querySelector(`.tabContent[data-tabId='documentation']`), documentation, document.querySelector(`.searchInput`).value)
+                });
+                // [...document.getElementsByClassName("tabs")[0].children].forEach(i => {
+                urlParams.set("tab", document.querySelector('input[name="tab"]:checked').getAttribute("data-tabId"))
+                window.history.pushState({}, '', window.location.pathname + '?' + urlParams);
+
+                // })
+                document.getElementsByClassName("banner")[0].removeAttribute("style")
+                setTimeout(() => {
+                    document.getElementsByTagName("style")[1].remove()
+                }, 0)
+            })
+        })
+        let response = await fetch("https://raw.githubusercontent.com/ahypnoman/javaScratchDocumentation/main/docs.txt")
+        let res2 = response.clone()
+        const total = 296193
+        const loader = document.getElementsByClassName("loader")[0]
+        let textJs = ""
+        const reader = response.body.getReader();
+        let bytesReceived = 0;
+        let percent = 0
+        let lastPercent = 0
+        while (true) {
+            const result = await reader.read()
+            if (result.done) {
+                const loadingFinished = new CustomEvent("loadingFinished")
+                setTimeout(() => {
+                    res2.text().then(x => {
+                        textJs = x
+                        document.dispatchEvent(loadingFinished)
+                    })
+                    loader.remove()
+                }, 100)
+                break
+            } else {
+                lastPercent = percent
+                bytesReceived += new TextDecoder().decode(result.value).length
+                percent = Math.ceil((bytesReceived / total) * 100)
+                loader.style.background = "linear-gradient(90deg, #ffffff " + percent + "%, #00000000 0%)"
+            }
+        }
+    }
+
+    function copy(text) {
+        const type = 'text/plain';
+        const blob = new Blob([text], {type});
+        navigator.clipboard.write([new ClipboardItem({[type]: blob})])
+    }
+
+    function renderDocsSidebar(el, docs, filter) {
+        const docsData = {...docs}
+        if (!docsData["::error: not found"]) docsData["::error: not found"] = {
+            "visible": false,
+            "hideFromFilter": true,
+            "name": "Error: Not found",
+            "content": `<span class="docsBanner" style="background: var(--error-banner)">This is an error page that was not created by a site administrator. Inform a site administrator that you have seen this page.</span>
+<div>The selected page could not be found.<div class="codeDemo"><h3>Why am I seeing this?</h3><div class="codeDemoContainer" style="color: #000; white-space: pre-wrap; overflow: hidden">A queried docs item could not be found.</div></div>
+<div class="codeDemo"><h3>How can it be fixed?</h3><div class="codeDemoContainer" style="color: #000; white-space: pre-wrap; overflow: hidden">This error probably occurred because the ID of a page and the ID targeting said page in a child array have different values. Correct the IDs.</div></div></div>`,
+        }
+
+        function generateSidebarEntry(id, docPart, indent, ignoreVisibility) {
+            let html = ""
+            if (docPart && ((docPart.isTitle || [undefined, ""].includes(filter) || (docPart.name || id).toLowerCase().includes(filter.toLowerCase())) && ([undefined, ""].includes(filter) ? (docPart.visible || ignoreVisibility) : true)) && !docPart.hideFromFilter) {
+                if (docPart.isTitle === true) {
+                    html += "<li><span style='padding-left: " + (indent + 8) + "px; box-sizing: border-box'>" + (docPart.name || id) + "</span>"
+                } else {
+                    html += "<li><button style='padding-left: " + (indent + 8) + "px' data-sidebarId='" + (id) + "'>" + (docPart.name || id) + "</button>"
+                }
+                if (docPart.children && [undefined, ""].includes(filter)) {
+                    html += "<ul>"
+                    docPart.children.forEach(x => {
+                        html += generateSidebarEntry(x, docsData[x], indent + 16, true)
+                    })
+                    html += "</ul>"
+                }
+                html += "</li>"
+            } else if (!docPart) {
+                html += "<li><button style='padding-left: " + (indent + 8) + "px' data-sidebarId='::error: not found'>Error: Not found - " + id + "</button></li>"
+            }
+            return html
+        }
+
+        el.children[1].children[1].children[0].innerHTML = ""
+        Object.keys(docsData).forEach(x => el.children[1].children[1].children[0].innerHTML += generateSidebarEntry(x, docsData[x], 0))
+        addEvents(el, docsData)
+    }
+
+    function renderDocs(el, docs, selectedPage) {
+        const docsData = {...docs}
+        docsData["::error: not found"] = {
+            "visible": false,
+            "name": "Error: Not found",
+            "content": `<span class="docsBanner" style="background: var(--error-banner)">This is an error page that was not created by a site administrator. Inform a site administrator that you have seen this page.</span>
+<div>The selected page could not be found.<div class="codeDemo"><h3>Why am I seeing this?</h3><div class="codeDemoContainer" style="color: #000; white-space: pre-wrap; overflow: hidden">A queried docs item could not be found.</div></div>
+<div class="codeDemo"><h3>How can it be fixed?</h3><div class="codeDemoContainer" style="color: #000; white-space: pre-wrap; overflow: hidden">This error probably occurred because the ID of a page and the ID targeting said page in a child array have different values. Correct the IDs.</div></div></div>`,
+        }
+
+        if (docsData[selectedPage]) {
+            el.children[0].innerHTML = "<h3>" + ((docsData[selectedPage] ? docsData[selectedPage].name : selectedPage) || selectedPage) + "</h3><button class='copyUrl'>🔗</button>" + docsData[selectedPage].content
+        } else {
+            el.children[0].innerHTML = "<h3>" + "Error: Not found" + "</h3>" + docsData["::error: not found"].content
+        }
+        addEvents(el, docsData)
+    }
+
+    function addEvents(el, docsData) {
+        Object.keys(docsData).forEach(x => {
+            document.querySelectorAll('[data-sidebarId="' + x + '"]:not(.hasEvent)').forEach(button => {
+                if (button) {
+                    button.classList.add("hasEvent")
+                    button.addEventListener("click", () => {
+                        const urlParams = new URLSearchParams(window.location.search)
+                        urlParams.set("docsPage", x)
+                        renderDocs(el, docsData, x)
+                        window.history.pushState({}, '', window.location.pathname + '?' + urlParams);
+                    })
+                }
+            })
+        })
+        document.querySelectorAll('.copyUrl:not(.hasEvent)').forEach(button => {
+            if (button) {
+                button.classList.add("hasEvent")
+                button.addEventListener("click", () => {
+                    copy(window.location)
+                })
+            }
+        })
+    }
+</script>
+</body>
+</html>
