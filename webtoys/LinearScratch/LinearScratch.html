@@ -539,13 +539,13 @@
     function renderMemDisplay(){
         let display = ""
         for(let i = (document.body.clientWidth/70 + 2)/2; i > 1; i--){
-            display += "<span class='memBlock'>" + (runningInfo.range[0]!==undefined?runningInfo.range[0]:0) + "</span>"
+            display += "<span class='memBlock'>" + (runningInfo.range[0]||0) + "</span>"
         }
         runningInfo.memory.forEach((i)=>{
             display += `<span class='memBlock'>${i}</span>`
         })
         for(let i = (document.body.clientWidth/70 + 2)/2; i > 1; i--){
-            display += "<span class='memBlock'>" + (runningInfo.range[0]!==undefined?runningInfo.range[0]:0) + "</span>"
+            display += "<span class='memBlock'>" + (runningInfo.range[0]||0) + "</span>"
         }
         return display
     }
@@ -604,9 +604,9 @@
             document.getElementsByClassName("debugContent")[0].innerHTML = `
             ${(mode === "Image") ? '<canvas class="playerContent" width="480" height="274"></canvas>' : '<div class="playerContentOuter"><div class="playerContent"></div></div>'}
             <div class="modeButtonsWrapper">
-            <button class="modeButton ${(mode === "ASCII") ? "mBSelected": ""}" onclick="renderDebugContent('ASCII'); runningInfo.outputMode = 'ASCII'">ASCII</button>
-            <button class="modeButton ${(mode === "Numeric") ? "mBSelected": ""}" onclick="renderDebugContent('Numeric'); runningInfo.outputMode = 'Numeric'">Numeric</button>
-            <button class="modeButton ${(mode === "Image") ? "mBSelected": ""}" onclick="renderDebugContent('Image'); runningInfo.outputMode = 'Image'">Image</button>
+            <button class="modeButton ${(mode === "ASCII") ? "mBSelected": ""}" onmouseup="renderDebugContent('ASCII'); runningInfo.outputMode = 'ASCII'">ASCII</button>
+            <button class="modeButton ${(mode === "Numeric") ? "mBSelected": ""}" onmouseup="renderDebugContent('Numeric'); runningInfo.outputMode = 'Numeric'">Numeric</button>
+            <button class="modeButton ${(mode === "Image") ? "mBSelected": ""}" onmouseup="renderDebugContent('Image'); runningInfo.outputMode = 'Image'">Image</button>
             </div>
             <button class="roundButton" style="--button-icon: url('icons/Download_blue.svg'); --button-content: 'Export'; position:fixed; bottom: 65px; right: 5px;" onclick="popups.exportOutput()"></button>`
             renderOutputContent(mode)
