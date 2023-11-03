@@ -542,7 +542,7 @@
             display += "<span class='memBlock'>" + (runningInfo.range[0]||0) + "</span>"
         }
         runningInfo.memory.forEach((i)=>{
-            display += `<span class='memBlock'>${i}</span>`
+            display += `<span class='memBlock'>${i||0}</span>`
         })
         for(let i = (document.body.clientWidth/70 + 2)/2; i > 1; i--){
             display += "<span class='memBlock'>" + (runningInfo.range[0]||0) + "</span>"
