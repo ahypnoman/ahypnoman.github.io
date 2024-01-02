@@ -115,7 +115,11 @@
     function saveToHistory() {
         sessionInfo.undoRedoHistory.slice(0, sessionInfo.undoRedoPos)
         sessionInfo.undoRedoPos = sessionInfo.undoRedoHistory.length
-        if (!JSON.stringify(sessionInfo.fullHistory[sessionInfo.fullHistory.length-1]) || JSON.stringify(sessionInfo.fullHistory[sessionInfo.fullHistory.length-1].data) !== JSON.stringify(projectInfo)) {
+        if(projectInfo.e) {
+            console.log(JSON.stringify(sessionInfo.fullHistory[sessionInfo.fullHistory.length - 1].data) !== JSON.stringify(projectInfo))
+            console.log(JSON.stringify(sessionInfo.fullHistory[sessionInfo.fullHistory.length - 1].data), JSON.stringify(projectInfo))
+        }
+        if (!JSON.stringify(sessionInfo.fullHistory[sessionInfo.fullHistory.length-1]) || (JSON.stringify(sessionInfo.fullHistory[sessionInfo.fullHistory.length-1].data) !== JSON.stringify(projectInfo))) {
             sessionInfo.fullHistory.push({
                 time: new Date(),
                 data: JSON.parse(JSON.stringify(projectInfo))
@@ -189,7 +193,6 @@
              codeList.shift()
              codeList.forEach((i) => {
                  const isBf = ['>', '<', '+', '-', '.', ',', '[', ']'].includes(i)
-                 console.log(projectInfo.projectData.scripts[i], i)
                  wrapper.insertAdjacentHTML('beforeend', `<span class="block" blockType="${(isBf) ? 'BF' : projectInfo.projectData.scripts[i].loc}" blockcode="${i}" style="--block-color:${(isBf) ? blockInfo[i][0] : ((projectInfo.projectData.scripts[i].loc === 'projectData.custom') ? '#ff6680' : get(projectInfo, projectInfo.projectData.scripts[i].loc).color)};"><span class="blockTop"></span><span class="blockBottom"></span><span class="innerBlock"><span class="centered"><span class="blockSymbol">${(isBf) ? i : projectInfo.projectData.scripts[i].icon}</span><br>${(isBf) ? blockInfo[i][1] : projectInfo.projectData.scripts[i].name}</span></span><span class="snapPoint"></span></span>`)
              })
              if(editing==="projectData.main") wrapper.insertAdjacentHTML('beforeend', '<span class="end"><span class="blockTop" style="border-width: 0 0 0 1px; height: calc(50% - 7px);"></span><span class="blockBottom" style="border-width: 0 0 0 1px; height: calc(50% - 7px);"></span><img width="20" src="icons/script/Script_end.svg">End</span>');
@@ -657,7 +660,7 @@
     function importProjectFromV1(rawData) {
         let data = rawData.split("™")
         newProject()
-        projectInfo.name = data[0]
+        projectInfo.projectMeta.name = data[0]
         projectInfo.projectMeta.settings.defaultDisplay = data[1]
         projectInfo.projectMeta.description = data[2]
         projectInfo.projectData.main.icon = data[3].split("±")[0]
@@ -971,7 +974,22 @@
             document.getElementsByClassName("projectHistory")[0].innerHTML = ''
             sessionInfo.fullHistory.forEach((i) => {
                 if (JSON.stringify(i.data) === JSON.stringify(genProject())) document.getElementsByClassName("projectHistory")[0].innerHTML += `<li><button class="plainButton" onclick='treeRender(); projectInfo = ${JSON.stringify(JSON.parse(JSON.stringify(i.data)))}; saveToHistory(); if (editing !== "projectData.main") renderScript(get(projectInfo, editing).name,get(projectInfo, editing).code,get(projectInfo, editing).loc); else renderScript(get(projectInfo, editing).name,get(projectInfo, editing).code); saveToHistory(); renderProjectHistory(); addNameInput(); document.getElementsByClassName("whiteBG")[0].remove();'>${i.time.getHours()}:${i.time.getMinutes()}:${i.time.getSeconds()} - <span style="color: #ff0000">Blank</button></li>`;
-                else document.getElementsByClassName("projectHistory")[0].innerHTML += `<li><button class="plainButton" onclick='treeRender(); projectInfo = ${JSON.stringify(JSON.parse(JSON.stringify(i.data)))}; saveToHistory(); if (editing !== "projectData.main") renderScript(get(projectInfo, editing).name,get(projectInfo, editing).code,get(projectInfo, editing).loc); else renderScript(get(projectInfo, editing).name,get(projectInfo, editing).code); saveToHistory(); renderProjectHistory(); addNameInput(); document.getElementsByClassName("whiteBG")[0].remove()'>${i.time.getHours()}:${i.time.getMinutes()}:${i.time.getSeconds()}</button></li>`
+                else document.getElementsByClassName("projectHistory")[0].insertAdjacentHTML("beforeend",`<li><button class="plainButton">${i.time.getHours()}:${i.time.getMinutes()}:${i.time.getSeconds()}</button></li>`)
+                const el = document.querySelectorAll(".projectHistory > li:last-child > *")[0]
+                console.log(el)
+                el.addEventListener("click", (ev)=>{
+                    if(ev.target === el) {
+                        treeRender()
+                        projectInfo = {...i.data}
+                        saveToHistory()
+                        if (editing !== "projectData.main") renderScript(get(projectInfo, editing).name, get(projectInfo, editing).code, get(projectInfo, editing).loc)
+                        else renderScript(get(projectInfo, editing).name, get(projectInfo, editing).code)
+                        saveToHistory()
+                        renderProjectHistory()
+                        addNameInput();
+                        document.getElementsByClassName("whiteBG")[0].remove()
+                    }
+                })
             })
         }
     }
@@ -1043,7 +1061,6 @@
                     list.push("My Project " + localStorage.getItem("ls-sessionCounter"))
                     localStorage.setItem("ls-projectOrder", JSON.stringify(list))
                     document.getElementsByClassName("name")[0].value = "My Project " + localStorage.getItem("ls-sessionCounter")
-                    console.log("Autosaves active")
                 } else {
                     sessionInfo.saveTo = JSON.parse(localStorage.getItem("ls-settings")).openProject
                     projectInfo = JSON.parse(localStorage.getItem("ls-projectStore"))[sessionInfo.saveTo]

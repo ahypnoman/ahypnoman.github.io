@@ -111,7 +111,6 @@ function runToken(t, i, stackInfo){
                 stackInfo.index++
                 if(!document.getElementsByClassName("playerIdentifier")[0]) popups.getInput(runningInfo.inputType, stackInfo)
                 else {
-                    console.log(stackInfo)
                     interpreterInfo.requestInput = stackInfo
                     document.getElementsByClassName("inputsHolder")[0].children[0].focus()
                     if(document.getElementsByClassName('inputPrompt')[0]) document.getElementsByClassName("inputPrompt")[0].remove()
