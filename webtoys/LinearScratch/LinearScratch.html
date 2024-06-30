@@ -192,6 +192,7 @@
              const codeList = code.split("‡")
              codeList.shift()
              codeList.forEach((i) => {
+                 console.log(i)
                  const isBf = ['>', '<', '+', '-', '.', ',', '[', ']'].includes(i)
                  wrapper.insertAdjacentHTML('beforeend', `<span class="block" blockType="${(isBf) ? 'BF' : projectInfo.projectData.scripts[i].loc}" blockcode="${i}" style="--block-color:${(isBf) ? blockInfo[i][0] : ((projectInfo.projectData.scripts[i].loc === 'projectData.custom') ? '#ff6680' : get(projectInfo, projectInfo.projectData.scripts[i].loc).color)};"><span class="blockTop"></span><span class="blockBottom"></span><span class="innerBlock"><span class="centered"><span class="blockSymbol">${(isBf) ? i : projectInfo.projectData.scripts[i].icon}</span><br>${(isBf) ? blockInfo[i][1] : projectInfo.projectData.scripts[i].name}</span></span><span class="snapPoint"></span></span>`)
              })
@@ -534,7 +535,7 @@
             turboButton.style.color = "#ffcd9c"
         }
     }
-    
+
     function addNameInput(){
         document.getElementsByClassName('scriptNameWrapper')[0].innerHTML = `<input placeholder='Name script' class='scriptName resize' oninput='resizeCheck(this); get(projectInfo, editing).name = this.value; treeRender();' type='text' value='${get(projectInfo, editing).name}' >`
     }
@@ -659,24 +660,35 @@
     }
     function importProjectFromV1(rawData) {
         let data = rawData.split("™")
+        const initialData = rawData.split("™")
+        const setCodeAccumulator = []
+        let scriptId = 2;
+        const oldIds = []
+        const newIds = []
         newProject()
-        projectInfo.projectMeta.name = data[0]
+        projectInfo.name = data[0]
         projectInfo.projectMeta.settings.defaultDisplay = data[1]
         projectInfo.projectMeta.description = data[2]
         projectInfo.projectData.main.icon = data[3].split("±")[0]
         projectInfo.projectData.main.name = data[3].split("±")[1]
-        projectInfo.projectData.main.code = data[3].split("±")[2]
+
+        setCodeAccumulator.push(filter => {projectInfo.projectData.main.code = filter(initialData[3].split("±")[2])})
         for(let ti = 5; data[ti]!=="::" && data[ti]; ti++){
-            projectInfo.projectData.scripts["_" + genRandomString()] = {
+            const blockId = "_" + genRandomString()
+            projectInfo.projectData.scripts[blockId] = {
                 icon: data[ti].split("±")[0].substring(1),
                 name: data[ti].split("±")[1],
-                code: data[ti].split("±")[2],
                 loc: "projectData.custom"
             }
+            scriptId++
+            oldIds.push(scriptId)
+            newIds.push(blockId)
+            setCodeAccumulator.push(filter => {projectInfo.projectData.scripts[blockId].code = filter(initialData[ti].split("±")[2])})
             projectInfo.projectData.custom.scripts.push(Object.keys(projectInfo.projectData.scripts)[Object.keys(projectInfo.projectData.scripts).length-1])
         }
         if(data.includes("::")) {
             indexOfAll(data,"::").forEach((i)=>{
+                scriptId+=3
                 data = data.slice(data.indexOf("::")+1)
                 let extension = data.slice(0, data.indexOf("::") ? data.indexOf("::") : data.length-1)
                 projectInfo.projectData.extensions["_" + genRandomString()] = {
@@ -685,18 +697,30 @@
                     scripts: []
                 }
                 let exID = Object.keys(projectInfo.projectData.extensions)[Object.keys(projectInfo.projectData.extensions).length-1]
+                const extensionData = [...data]
                 extension = extension.slice(2)
-                extension.forEach(()=> {
-                    projectInfo.projectData.scripts["_" + genRandomString()] = {
-                        icon: data[3].split("±")[0].substring(1),
-                        name: data[3].split("±")[1],
-                        code: data[3].split("±")[2],
-                        loc: "projectData." + exID
+                extension.forEach((x, index)=> {
+                    const blockId = "_" + genRandomString()
+                    projectInfo.projectData.scripts[blockId] = {
+                        icon: data[2 + index].split("±")[0].substring(1),
+                        name: data[2 + index].split("±")[1],
+                        loc: "projectData.extensions." + exID
                     }
+                    scriptId++
+                    oldIds.push(scriptId)
+                    newIds.push(blockId)
+                    setCodeAccumulator.push(filter => {projectInfo.projectData.scripts[blockId].code = filter(extensionData[2 + index].split("±")[2])})
                     get(projectInfo, "projectData.extensions." + exID).scripts.push(Object.keys(projectInfo.projectData.scripts)[Object.keys(projectInfo.projectData.scripts).length-1])
                 })
             })
         }
+        setCodeAccumulator.forEach(x => x(y => {
+            let z = y
+            oldIds.forEach((item, index) => {
+                z = z.replaceAll(new RegExp("\\." + item + "\\.[a-zA-Z0-9]{6,}", "g"), newIds[index])
+            })
+            return z
+        }))
     }
 
     function indexOfAll(array, val) {
@@ -808,7 +832,7 @@
     }
 
     function deleteSaveSlot(slot) {
-        
+
         let projects = JSON.parse(localStorage.getItem('ls-projectStore'));
         delete projects[slot]
         localStorage.setItem("ls-projectStore",JSON.stringify(projects))
@@ -976,7 +1000,6 @@
                 if (JSON.stringify(i.data) === JSON.stringify(genProject())) document.getElementsByClassName("projectHistory")[0].innerHTML += `<li><button class="plainButton" onclick='treeRender(); projectInfo = ${JSON.stringify(JSON.parse(JSON.stringify(i.data)))}; saveToHistory(); if (editing !== "projectData.main") renderScript(get(projectInfo, editing).name,get(projectInfo, editing).code,get(projectInfo, editing).loc); else renderScript(get(projectInfo, editing).name,get(projectInfo, editing).code); saveToHistory(); renderProjectHistory(); addNameInput(); document.getElementsByClassName("whiteBG")[0].remove();'>${i.time.getHours()}:${i.time.getMinutes()}:${i.time.getSeconds()} - <span style="color: #ff0000">Blank</button></li>`;
                 else document.getElementsByClassName("projectHistory")[0].insertAdjacentHTML("beforeend",`<li><button class="plainButton">${i.time.getHours()}:${i.time.getMinutes()}:${i.time.getSeconds()}</button></li>`)
                 const el = document.querySelectorAll(".projectHistory > li:last-child > *")[0]
-                console.log(el)
                 el.addEventListener("click", (ev)=>{
                     if(ev.target === el) {
                         treeRender()
